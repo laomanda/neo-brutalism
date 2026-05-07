@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jakkob-portfolio.vercel.app/sitemap.xml

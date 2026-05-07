@@ -1,0 +1,16 @@
+{
+  "name": "Jakkob Panjaitan Portfolio",
+  "short_name": "Jakkob",
+  "description": "Frontend Developer portfolio of Jakkob Panjaitan.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F4F1E8",
+  "theme_color": "#111111",
+  "icons": [
+    {
+      "src": "/icons/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
