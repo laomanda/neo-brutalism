@@ -24,8 +24,8 @@ export function LanguageToggle() {
         <div className="flex h-[28px] w-[34px] items-center justify-center">
           <span 
             className={cn(
-              "font-heading text-[10px] font-black tracking-tighter transition-all duration-300", 
-              language === "id" ? "scale-110 text-black opacity-100" : "scale-90 text-[var(--foreground)] opacity-40"
+              "font-heading text-[10px] font-black tracking-normal transition-all duration-300",
+              language === "id" ? "scale-110 text-black opacity-100" : "scale-90 text-[var(--muted)] opacity-90"
             )}
           >
             IDN
@@ -34,8 +34,8 @@ export function LanguageToggle() {
         <div className="flex h-[28px] w-[34px] items-center justify-center">
           <span 
             className={cn(
-              "font-heading text-[10px] font-black tracking-tighter transition-all duration-300", 
-              language === "en" ? "scale-110 text-black opacity-100" : "scale-90 text-[var(--foreground)] opacity-40"
+              "font-heading text-[10px] font-black tracking-normal transition-all duration-300",
+              language === "en" ? "scale-110 text-black opacity-100" : "scale-90 text-[var(--muted)] opacity-90"
             )}
           >
             ENG

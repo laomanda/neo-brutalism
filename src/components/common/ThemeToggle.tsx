@@ -12,7 +12,7 @@ export function ThemeToggle() {
   return (
     <button
       aria-label={getText(isDark ? uiCopy.themeLabels.light : uiCopy.themeLabels.dark, language)}
-      className="inline-flex h-10 w-10 items-center justify-center rounded-full border-2 border-[var(--border)] bg-[var(--card)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--primary)]"
+      className="inline-flex h-10 w-10 items-center justify-center rounded-full border-2 border-[var(--border)] bg-[var(--background)] text-[var(--foreground)] transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-[3px_3px_0_var(--border)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--primary)]"
       type="button"
       onClick={toggleTheme}
     >

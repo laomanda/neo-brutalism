@@ -1,4 +1,3 @@
-import clsx from "clsx";
 import { ImageWithFallback } from "./ImageWithFallback";
 import type { ImageAsset } from "../../types/asset.types";
 

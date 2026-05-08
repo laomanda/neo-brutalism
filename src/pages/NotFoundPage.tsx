@@ -1,10 +1,8 @@
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Container } from "../components/common/Container";
 import { buttonVariants } from "../components/ui/buttonVariants";
 import { Card } from "../components/ui/Card";
-import { SITE } from "../constants/site";
 import { detailCopy } from "../data/detailCopy.data";
 import { useLanguage } from "../hooks/useLanguage";
 import { getText } from "../utils/getText";

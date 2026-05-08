@@ -20,8 +20,8 @@ export const homepageCopy = {
   hero: {
     eyebrow: { id: "Web Developer", en: "Web Developer" },
     availability: {
-      id: "Terbuka untuk Junior Frontend Developer, freelance frontend, dan company profile project.",
-      en: "Open for Junior Frontend Developer roles, freelance frontend work, and company profile projects.",
+      id: "Terbuka untuk frontend role & freelance work.",
+      en: "Open for frontend roles & freelance work.",
     },
     roleNote: {
       id: "Frontend Developer first, Fullstack-capable second.",
@@ -41,7 +41,11 @@ export const homepageCopy = {
     cvPending: { id: "CV akan ditambahkan", en: "CV will be added" },
     photoPlaceholder: { id: "Foto asli akan ditambahkan", en: "Real photo will be added" },
     skillTags: ["React", "TypeScript", "Tailwind CSS", "Laravel", "MySQL"],
-    posterBadges: ["UI Engineering", "Fullstack Ready", "RPL Fresh Graduate"],
+    posterBadges: ["Frontend First", "Laravel Flow", "RPL Graduate"],
+    posterStrip: {
+      id: "Junior Frontend Developer",
+      en: "Junior Frontend Developer",
+    }
   },
   about: {
     eyebrow: { id: "Tentang Saya", en: "About Me" },

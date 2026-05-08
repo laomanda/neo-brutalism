@@ -79,8 +79,8 @@ export function Navbar() {
       {/* Desktop & Mobile Main Bar */}
       <nav 
         className={cn(
-          "relative flex items-center justify-between rounded-full border-[3px] border-[var(--border)] transition-all duration-300",
-          scrolled ? "bg-[var(--card)]/95 p-1.5 shadow-[4px_4px_0_var(--border)] backdrop-blur-md" : "bg-[var(--card)] p-2 shadow-[6px_6px_0_var(--border)]"
+          "relative flex items-center justify-between rounded-full border-[3px] border-[var(--border)] bg-[var(--card)]/95 backdrop-blur-xl transition-all duration-300",
+          scrolled ? "p-1.5 [box-shadow:var(--nav-shadow),4px_4px_0_var(--border)]" : "p-2 [box-shadow:var(--nav-shadow),6px_6px_0_var(--border)]"
         )}
       >
         
@@ -95,9 +95,6 @@ export function Navbar() {
           </span>
           <div className="flex flex-col items-start leading-none">
             <span className="font-heading text-sm font-extrabold tracking-tight transition-colors group-hover:text-[var(--primary)] sm:text-base">Jakkob.dev</span>
-            <span className="text-[9px] font-bold uppercase tracking-wider text-[var(--foreground)]/60 sm:text-[10px]">
-              {getText(uiCopy.frontendPortfolio, language)}
-            </span>
           </div>
         </button>
 
@@ -113,7 +110,7 @@ export function Navbar() {
                   "group relative flex items-center gap-2 rounded-full px-4 py-2 text-sm font-extrabold transition-all duration-200 focus-brutal",
                   active
                     ? "bg-[var(--foreground)] text-[var(--background)] shadow-[2px_2px_0_var(--border)]"
-                    : "text-[var(--foreground)]/80 hover:-translate-y-0.5 hover:bg-[var(--border)]/10 hover:text-[var(--foreground)]"
+                    : "text-[var(--foreground)]/88 hover:-translate-y-0.5 hover:bg-[var(--card-2)] hover:text-[var(--foreground)]"
                 )}
                 type="button"
                 onClick={() => handleNavigate(item.href)}
@@ -121,7 +118,7 @@ export function Navbar() {
                 {icon && (
                   <Icon 
                     icon={icon} 
-                    className={cn("h-4 w-4 transition-all duration-200", active ? "opacity-100" : "opacity-60 group-hover:scale-110 group-hover:opacity-100")} 
+                    className={cn("h-4 w-4 transition-all duration-200", active ? "opacity-100" : "opacity-75 group-hover:scale-110 group-hover:opacity-100")}
                   />
                 )}
                 <span>{getText(item.label, language)}</span>
@@ -130,22 +127,9 @@ export function Navbar() {
           })}
         </div>
 
-        {/* Mobile Status Indicator */}
-        <div className="flex flex-1 items-center justify-center lg:hidden">
-          <div className="flex items-center gap-1.5 rounded-full border-2 border-[var(--border)] bg-[var(--background)] px-2 py-1 shadow-sm sm:px-3 sm:py-1.5">
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--lime)] opacity-75"></span>
-              <span className="relative inline-flex h-2 w-2 rounded-full border border-black bg-[var(--lime)]"></span>
-            </span>
-            <span className="hidden text-[10px] font-extrabold uppercase tracking-widest text-[var(--foreground)]/80 sm:inline-block">
-              {getText(uiCopy.available, language)}
-            </span>
-          </div>
-        </div>
-
         {/* Desktop Right Controls */}
         <div className="hidden items-center gap-3 lg:flex">
-          <div className="flex items-center gap-1.5 rounded-full border-2 border-[var(--border)] bg-[var(--background)] p-1 shadow-sm transition-transform duration-200 hover:-translate-y-0.5">
+          <div className="flex items-center gap-1 rounded-full border-2 border-[var(--border)] bg-[var(--card-2)]/90 p-1 [box-shadow:inset_0_1px_0_rgba(255,255,255,0.08),2px_2px_0_var(--border)] transition-transform duration-200 hover:-translate-y-0.5">
             <LanguageToggle />
             <ThemeToggle />
           </div>
@@ -155,7 +139,7 @@ export function Navbar() {
         <button
           aria-expanded={isOpen}
           aria-label="Toggle menu"
-          className="grid h-11 w-11 place-items-center rounded-full border-2 border-[var(--border)] bg-[var(--background)] transition-transform focus-brutal active:scale-95 lg:hidden"
+          className="ml-auto grid h-11 w-11 place-items-center rounded-full border-2 border-[var(--border)] bg-[var(--card-2)] transition-transform focus-brutal active:scale-95 lg:hidden"
           type="button"
           onClick={() => setIsOpen((current) => !current)}
         >
@@ -192,20 +176,20 @@ export function Navbar() {
                     "group flex w-full items-center gap-3 rounded-xl border-2 border-[var(--border)] px-4 py-3 text-left text-sm font-extrabold transition-transform duration-200 focus-brutal active:scale-[0.98]",
                     active
                       ? "bg-[var(--primary)] text-white shadow-[2px_2px_0_var(--border)]"
-                      : "bg-[var(--background)] hover:-translate-y-0.5 hover:bg-[var(--border)]/10 hover:text-[var(--foreground)]"
+                      : "bg-[var(--card-2)] text-[var(--foreground)]/88 hover:-translate-y-0.5 hover:bg-[var(--background)] hover:text-[var(--foreground)]"
                   )}
                   type="button"
                   onClick={() => handleNavigate(item.href)}
                 >
-                  {icon && <Icon icon={icon} className={cn("h-4 w-4", active ? "opacity-100" : "opacity-60 group-hover:opacity-100")} />}
+                  {icon && <Icon icon={icon} className={cn("h-4 w-4", active ? "opacity-100" : "opacity-75 group-hover:opacity-100")} />}
                   {getText(item.label, language)}
                 </button>
               );
             })}
           </div>
 
-          <div className="mt-2 flex items-center justify-between rounded-xl border-2 border-[var(--border)] bg-[var(--background)] p-2">
-            <span className="px-2 font-mono text-[10px] font-extrabold uppercase tracking-widest text-[var(--foreground)]/60">
+          <div className="mt-2 flex items-center justify-between rounded-xl border-2 border-[var(--border)] bg-[var(--card-2)] p-2">
+            <span className="px-2 font-mono text-[10px] font-extrabold uppercase tracking-widest text-[var(--muted)]">
               {getText(uiCopy.systemConfig, language)}
             </span>
             <div className="flex gap-2">

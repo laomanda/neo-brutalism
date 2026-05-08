@@ -1,5 +1,4 @@
 import { ArrowUpRight, MessageCircle } from "lucide-react";
-import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { BackLink } from "../components/common/BackLink";
 import { Container } from "../components/common/Container";

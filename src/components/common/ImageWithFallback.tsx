@@ -52,7 +52,6 @@ export const ImageWithFallback = ({
         width={width}
         height={height}
         loading={loading}
-        // @ts-expect-error React 18 types don't officially support fetchpriority on img, but standard HTML does
         fetchPriority={fetchPriority}
         decoding="async"
         onError={() => setError(true)}

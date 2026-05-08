@@ -81,10 +81,6 @@ export const uiCopy = {
       en: "Light Mode",
     },
   },
-  frontendPortfolio: {
-    id: "Frontend Portfolio",
-    en: "Frontend Portfolio",
-  },
   availableForWork: {
     id: "Siap Bekerja",
     en: "Available for work",

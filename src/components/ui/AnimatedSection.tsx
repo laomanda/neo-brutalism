@@ -1,4 +1,4 @@
-import { motion, useReducedMotion } from "motion/react";
+import { motion, useReducedMotion, type Variants } from "motion/react";
 import type { ReactNode } from "react";
 import { cn } from "../../utils/cn";
 import * as variants from "../../utils/motion";
@@ -26,12 +26,18 @@ export function AnimatedSection({
 
   // If we only want simple fadeIn on reduce motion, fadeIn is applied.
   // Add delay to the variant transition if present
-  const mergedVariant = {
+  const visibleState = selectedVariant.visible as Record<string, unknown>;
+  const existingTransition =
+    typeof visibleState.transition === "object" && visibleState.transition !== null
+      ? visibleState.transition
+      : {};
+
+  const mergedVariant: Variants = {
     ...selectedVariant,
     visible: {
-      ...selectedVariant.visible,
+      ...visibleState,
       transition: {
-        ...(selectedVariant.visible as any).transition,
+        ...existingTransition,
         delay,
       }
     }

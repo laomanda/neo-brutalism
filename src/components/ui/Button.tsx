@@ -1,8 +1,8 @@
-import type { ButtonHTMLAttributes, ReactNode } from "react";
-import { motion } from "motion/react";
+import type { ReactNode } from "react";
+import { motion, type HTMLMotionProps } from "motion/react";
 import { buttonVariants, type ButtonSize, type ButtonVariant } from "./buttonVariants";
 
-type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+type ButtonProps = HTMLMotionProps<"button"> & {
   children: ReactNode;
   variant?: ButtonVariant;
   size?: ButtonSize;

@@ -22,10 +22,11 @@ export function MainLayout() {
   }, [location.hash]);
 
   return (
-    <div className="relative min-h-screen bg-[var(--background)] text-[var(--foreground)] overflow-hidden">
-      {/* Background Atmosphere Layers */}
-      <div className="fixed inset-0 pointer-events-none z-0 bg-radial-accent" />
-      <div className="fixed inset-0 pointer-events-none z-0 bg-brutal-grid" />
+    <div className="relative min-h-screen overflow-x-hidden bg-[var(--background)] text-[var(--foreground)]">
+      <div className="pointer-events-none absolute inset-x-0 top-0 z-0 h-[110vh] overflow-hidden" aria-hidden="true">
+        <div className="absolute inset-0 bg-radial-accent" />
+        <div className="absolute inset-0 bg-brutal-grid" />
+      </div>
 
       {/* Skip to Content for Accessibility */}
       <a
@@ -37,7 +38,7 @@ export function MainLayout() {
 
       <div className="relative z-10 flex min-h-screen flex-col">
         <Navbar />
-        <main id="main-content" className="flex-1 pt-28 sm:pt-36">
+        <main id="main-content" className="flex-1 pt-24 sm:pt-32">
           <PageTransition keyId={location.pathname}>
             <Outlet />
           </PageTransition>

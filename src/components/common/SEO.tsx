@@ -9,7 +9,7 @@ type SEOProps = {
   image?: string;
   type?: "website" | "article";
   noIndex?: boolean;
-  schemas?: Record<string, any>[];
+  schemas?: Record<string, unknown>[];
 };
 
 function updateMetaTag(nameOrProperty: string, value: string, isProperty = false) {
@@ -34,7 +34,7 @@ function updateCanonicalLink(url: string) {
   link.setAttribute("href", url);
 }
 
-function updateStructuredData(schemas: Record<string, any>[]) {
+function updateStructuredData(schemas: Record<string, unknown>[]) {
   let script = document.querySelector('script[type="application/ld+json"]');
   if (!script) {
     script = document.createElement("script");

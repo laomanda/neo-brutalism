@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-import { SITE_CONFIG } from "../constants/site";
 import { AboutSection } from "../sections/AboutSection";
 import { CaseStudySection } from "../sections/CaseStudySection";
 import { ContactSection } from "../sections/ContactSection";

@@ -1,5 +1,4 @@
 import { ArrowUpRight, ExternalLink, Mail } from "lucide-react";
-import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { BackLink } from "../components/common/BackLink";
 import { Container } from "../components/common/Container";
@@ -12,7 +11,6 @@ import { StackBadges } from "../components/common/StackBadges";
 import { Badge } from "../components/ui/Badge";
 import { buttonVariants } from "../components/ui/buttonVariants";
 import { Card } from "../components/ui/Card";
-import { SITE } from "../constants/site";
 import { detailCopy } from "../data/detailCopy.data";
 import { PROJECT_SCREENSHOTS } from "../data/assets.data";
 import { projects } from "../data/projects.data";
@@ -40,8 +38,6 @@ export function ProjectDetailPage() {
   const responsibilities = getList(project.responsibilities ?? projectCopy.fallbackResponsibilities, language);
   const challenges = getList(project.challenges ?? projectCopy.fallbackChallenges, language);
   const results = getList(project.results ?? projectCopy.fallbackResults, language);
-  const screenshotLabels = projectCopy.screenshotLabels[language];
-
   return (
     <section className="section-padding pt-6">
       <SEO
