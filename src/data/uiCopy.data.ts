@@ -71,23 +71,9 @@ export const uiCopy = {
       en: "EN",
     },
   },
-  themeLabels: {
-    dark: {
-      id: "Mode Gelap",
-      en: "Dark Mode",
-    },
-    light: {
-      id: "Mode Terang",
-      en: "Light Mode",
-    },
-  },
   availableForWork: {
     id: "Siap Bekerja",
     en: "Available for work",
-  },
-  systemConfig: {
-    id: "Konfigurasi Sistem",
-    en: "System Config",
   },
   navigation: {
     id: "Navigasi",

@@ -9,12 +9,12 @@ type AssetPlaceholderProps = {
 };
 
 const accentStyles = {
-  blue: "bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-200 dark:border-blue-900",
+  blue: "bg-blue-500/10 text-blue-600 border-blue-200",
   orange:
-    "bg-orange-500/10 text-orange-600 dark:text-orange-400 border-orange-200 dark:border-orange-900",
-  lime: "bg-lime-500/10 text-lime-600 dark:text-lime-400 border-lime-200 dark:border-lime-900",
+    "bg-orange-500/10 text-orange-600 border-orange-200",
+  lime: "bg-lime-500/10 text-lime-600 border-lime-200",
   purple:
-    "bg-purple-500/10 text-purple-600 dark:text-purple-400 border-purple-200 dark:border-purple-900",
+    "bg-purple-500/10 text-purple-600 border-purple-200",
 };
 
 export const AssetPlaceholder = ({

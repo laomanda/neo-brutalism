@@ -39,9 +39,9 @@ export const ProjectScreenshotFrame = ({
         {/* Browser Top Bar */}
         <div className="flex items-center gap-2 px-4 py-3 border-b-[3px] border-border bg-muted/50">
           <div className="flex gap-1.5">
-            <div className="w-3 h-3 rounded-full bg-red-400 border-2 border-black/10 dark:border-white/10" />
-            <div className="w-3 h-3 rounded-full bg-amber-400 border-2 border-black/10 dark:border-white/10" />
-            <div className="w-3 h-3 rounded-full bg-green-400 border-2 border-black/10 dark:border-white/10" />
+            <div className="w-3 h-3 rounded-full bg-red-400 border-2 border-black/10" />
+            <div className="w-3 h-3 rounded-full bg-amber-400 border-2 border-black/10" />
+            <div className="w-3 h-3 rounded-full bg-green-400 border-2 border-black/10" />
           </div>
           <div className="ml-4 flex-1 h-5 bg-background rounded border-2 border-border/20 max-w-[200px]" />
         </div>

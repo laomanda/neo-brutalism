@@ -7,7 +7,6 @@ import { useLanguage } from "../../hooks/useLanguage";
 import { cn } from "../../utils/cn";
 import { getText } from "../../utils/getText";
 import { LanguageToggle } from "../common/LanguageToggle";
-import { ThemeToggle } from "../common/ThemeToggle";
 import { uiCopy } from "../../data/uiCopy.data";
 
 const navIcons: Record<string, string> = {
@@ -131,7 +130,6 @@ export function Navbar() {
         <div className="hidden items-center gap-3 lg:flex">
           <div className="flex items-center gap-1 rounded-full border-2 border-[var(--border)] bg-[var(--card-2)]/90 p-1 [box-shadow:inset_0_1px_0_rgba(255,255,255,0.08),2px_2px_0_var(--border)] transition-transform duration-200 hover:-translate-y-0.5">
             <LanguageToggle />
-            <ThemeToggle />
           </div>
         </div>
 
@@ -190,11 +188,10 @@ export function Navbar() {
 
           <div className="mt-2 flex items-center justify-between rounded-xl border-2 border-[var(--border)] bg-[var(--card-2)] p-2">
             <span className="px-2 font-mono text-[10px] font-extrabold uppercase tracking-widest text-[var(--muted)]">
-              {getText(uiCopy.systemConfig, language)}
+              {getText(uiCopy.languageToggle, language)}
             </span>
             <div className="flex gap-2">
               <LanguageToggle />
-              <ThemeToggle />
             </div>
           </div>
         </div>

@@ -50,12 +50,20 @@ export const homepageCopy = {
   about: {
     eyebrow: { id: "Tentang Saya", en: "About Me" },
     title: {
-      id: "Developer muda yang peduli struktur, visual, dan pengalaman pengguna.",
-      en: "A young developer who cares about structure, visuals, and user experience.",
+      id: "Frontend-first developer yang menyusun visual, struktur, dan alur sistem dalam satu pengalaman web.",
+      en: "A frontend-first developer shaping visuals, structure, and system flow into one web experience.",
+    },
+    bentoTitle: {
+      id: "Obsesi Frontend. Kapabilitas Fullstack.",
+      en: "Frontend Obsessed. Fullstack Capable.",
+    },
+    bentoDescription: {
+      id: "Saya tidak hanya menulis kode; saya merancang sistem. Menghilangkan kebisingan untuk membangun pengalaman web yang cepat, interaktif, dan berdampak nyata.",
+      en: "I don't just write code; I design systems. Stripping away the noise to build blazing-fast, interactive web experiences that actually convert.",
     },
     description: {
-      id: "Saya adalah Fresh Graduate Rekayasa Perangkat Lunak dari Jakarta Timur dengan fokus utama pada frontend development. Saya terbiasa membangun tampilan web yang rapi, responsif, dan mudah digunakan, serta memiliki dasar fullstack untuk memahami alur backend, database, dan dashboard.",
-      en: "I am a Software Engineering fresh graduate from East Jakarta with a main focus on frontend development. I build clean, responsive, and usable web interfaces, while also having a fullstack foundation to understand backend workflows, databases, and dashboards.",
+      id: "Saya adalah Fresh Graduate Rekayasa Perangkat Lunak dari Jakarta Timur dengan fokus utama pada frontend development. Saya membangun interface yang responsif, rapi, dan punya karakter visual, sambil tetap memahami alur backend, database, dashboard, CRUD, dan sistem berbasis role.",
+      en: "I am a Software Engineering fresh graduate from East Jakarta with a main focus on frontend development. I build responsive, structured, and visually distinctive interfaces while understanding backend workflows, databases, dashboards, CRUD, and role-based systems.",
     },
     quickFacts: [
       { id: "Fresh Graduate Rekayasa Perangkat Lunak", en: "Software Engineering fresh graduate" },
