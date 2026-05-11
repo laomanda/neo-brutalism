@@ -1,9 +1,4 @@
 import {
-  ArrowRight,
-  Code2,
-  MousePointerClick,
-} from "lucide-react";
-import {
   motion,
   useMotionTemplate,
   useMotionValue,
@@ -12,23 +7,22 @@ import {
   useSpring,
   useTransform,
 } from "motion/react";
-import { useRef, type MouseEventHandler, useEffect, useState } from "react";
+import { useRef, type MouseEventHandler } from "react";
 import { Container } from "../components/common/Container";
 import { ResponsiveImage } from "../components/common/ResponsiveImage";
-import { IMAGE_ASSETS, PROJECT_SCREENSHOTS } from "../data/assets.data";
+import { IMAGE_ASSETS } from "../data/assets.data";
 import { homepageCopy } from "../data/homepageCopy.data";
-import { projects } from "../data/projects.data";
+
 import { useLanguage } from "../hooks/useLanguage";
 import { getText } from "../utils/getText";
 
-const stackItems = ["React", "TypeScript", "Tailwind", "Framer Motion", "GSAP", "Laravel", "Next.js"];
+
 
 export function AboutSection() {
   const { language } = useLanguage();
   const reduceMotion = useReducedMotion();
   const sectionRef = useRef<HTMLElement | null>(null);
-  const carouselRef = useRef<HTMLDivElement>(null);
-  const [carouselWidth, setCarouselWidth] = useState(0);
+
 
   // 3D & Interaction States
   const portraitX = useMotionValue(0);
@@ -53,11 +47,7 @@ export function AboutSection() {
 
   const spotlightBackground = useMotionTemplate`radial-gradient(circle at ${spotX}% ${spotY}%, rgba(182, 255, 59, 0.15), transparent 40%)`;
 
-  useEffect(() => {
-    if (carouselRef.current) {
-      setCarouselWidth(carouselRef.current.scrollWidth - carouselRef.current.offsetWidth);
-    }
-  }, []);
+
 
   const handleMouseMove: MouseEventHandler<HTMLDivElement> = (event) => {
     if (reduceMotion) return;
@@ -106,21 +96,6 @@ export function AboutSection() {
                 </p>
               </div>
 
-              {/* Clean Stack Marquee inside the Statement Box */}
-              <div className="w-full overflow-hidden rounded-xl border-2 border-[var(--border)] bg-[var(--foreground)] py-4 text-[var(--background)]">
-                <motion.div
-                  className="flex w-max gap-6 px-4"
-                  animate={reduceMotion ? undefined : { x: ["0%", "-50%"] }}
-                  transition={{ duration: 20, ease: "linear", repeat: Infinity }}
-                >
-                  {[...stackItems, ...stackItems].map((item, index) => (
-                    <div key={`${item}-${index}`} className="flex items-center gap-3">
-                      <Code2 size={16} className="text-[var(--lime)]" />
-                      <span className="font-mono text-sm font-black uppercase tracking-widest">{item}</span>
-                    </div>
-                  ))}
-                </motion.div>
-              </div>
             </div>
           </motion.div>
 
@@ -138,78 +113,55 @@ export function AboutSection() {
               className="h-full min-h-[400px] w-full"
               imgClassName="object-cover object-center grayscale transition-all duration-700 hover:grayscale-0 hover:scale-105"
             />
-            {/* Minimalist Overlay Label */}
-            <div className="absolute bottom-6 left-6 rounded-full border-2 border-[var(--border)] bg-[var(--lime)] px-4 py-2 font-mono text-xs font-black uppercase text-[#111111] shadow-[4px_4px_0_var(--border)]">
-              Live Workspace
-            </div>
           </motion.div>
 
-          {/* Card 3: Interactive Project Strip (Spans full width) */}
-          <div className="overflow-hidden rounded-[2rem] border-[3px] border-[var(--border)] bg-[var(--foreground)] p-6 shadow-[8px_8px_0_var(--border)] lg:col-span-3 lg:p-10">
-            <div className="mb-8 flex flex-wrap items-end justify-between gap-4 border-b-2 border-[var(--border)]/30 pb-6">
-              <h3 className="font-heading text-[clamp(2rem,4vw,3.5rem)] font-black uppercase leading-none text-[var(--background)]">
-                Shipped Realities
-              </h3>
-              <div className="flex items-center gap-2 text-[var(--lime)]">
-                <MousePointerClick size={20} />
-                <span className="font-mono text-xs font-black uppercase tracking-widest">Drag to explore</span>
+          {/* Card 3: Interactive Value Marquee (Spans full width) */}
+          <div className="overflow-hidden rounded-[2rem] border-[3px] border-[var(--border)] bg-[var(--foreground)] shadow-[8px_8px_0_var(--border)] lg:col-span-3">
+            <div className="p-6 pb-0 lg:p-10 lg:pb-0">
+              <div className="mb-8 border-b-2 border-[var(--border)]/30 pb-6">
+                <h3 className="font-heading text-[clamp(2rem,4vw,3.5rem)] font-black uppercase leading-none text-[var(--background)]">
+                  {language === "id" ? "Nilai & Prinsip" : "Values & Principles"}
+                </h3>
               </div>
             </div>
 
-            {/* Drag Carousel - Fix Magic Numbers with useRef */}
-            <motion.div ref={carouselRef} className="cursor-grab overflow-hidden active:cursor-grabbing">
-              <motion.div
-                drag={reduceMotion ? false : "x"}
-                dragConstraints={{ right: 0, left: -carouselWidth }}
-                dragElastic={0.1}
-                className="flex w-max gap-6"
-              >
-                {projects.map((project) => {
-                  const screenshot = project.screenshotsKey
-                    ? PROJECT_SCREENSHOTS[project.screenshotsKey][0]
-                    : IMAGE_ASSETS.workspace;
+            <div className="relative w-full overflow-hidden pt-16 pb-10 lg:pt-20 lg:pb-14">
+              {/* Cinematic Edge Fade Mask */}
+              <div 
+                className="pointer-events-none absolute inset-0 z-10"
+                style={{
+                  background: `linear-gradient(to right, var(--foreground) 0%, transparent 15%, transparent 85%, var(--foreground) 100%)`
+                }}
+              />
 
-                  return (
-                    <motion.article
-                      key={project.slug}
-                      whileHover={{ y: -8 }}
-                      transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                      className="group w-[300px] sm:w-[400px] overflow-hidden rounded-2xl border-2 border-[var(--border)] bg-[var(--card)] shadow-[6px_6px_0_var(--lime)]"
-                    >
-                      <div className="overflow-hidden border-b-2 border-[var(--border)]">
-                        <ResponsiveImage
-                          asset={screenshot}
-                          language={language}
-                          fallbackLabel={project.title}
-                          className="aspect-video"
-                          imgClassName="object-cover object-top transition duration-700 group-hover:scale-105"
-                        />
-                      </div>
-                      <div className="p-5">
-                        <div className="flex items-center justify-between">
-                          <h4 className="font-heading text-2xl font-black uppercase text-[var(--foreground)]">
-                            {project.title}
-                          </h4>
-                          <div className="rounded-full bg-[var(--foreground)] p-2 text-[var(--background)] transition-transform group-hover:-rotate-45">
-                            <ArrowRight size={18} strokeWidth={3} />
-                          </div>
-                        </div>
-                        <div className="mt-4 flex flex-wrap gap-2">
-                          {project.stack.slice(0, 3).map((stack) => (
-                            <span
-                              key={stack}
-                              className="rounded-full border border-[var(--border)]/20 bg-[var(--background)] px-3 py-1 font-mono text-[10px] font-bold uppercase text-[var(--foreground)]"
-                            >
-                              {stack}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    </motion.article>
-                  );
-                })}
+              <motion.div
+                className="flex w-max gap-8 px-6 lg:px-10"
+                animate={reduceMotion ? undefined : { x: ["0%", "-50%"] }}
+                transition={{ duration: 40, ease: "linear", repeat: Infinity }}
+              >
+                {[...homepageCopy.philosophy.cards, ...homepageCopy.philosophy.cards].map((value, index) => (
+                  <motion.div
+                    key={`${value.title.en}-${index}`}
+                    whileHover={{ 
+                      y: -24, 
+                      scale: 1.05, 
+                      rotate: -1.5,
+                      backgroundColor: "var(--lime)",
+                      zIndex: 50,
+                    }}
+                    transition={{ type: "spring", stiffness: 400, damping: 12 }}
+                    className="group w-[340px] shrink-0 cursor-pointer rounded-[2rem] bg-[var(--background)] p-8 text-[var(--foreground)] shadow-[8px_8px_0_rgba(182,255,59,0.5)] lg:w-[400px]"
+                  >
+                    <h4 className="font-heading text-xl font-black uppercase tracking-tight text-[var(--foreground)] transition-colors group-hover:text-[#111111] lg:text-2xl">
+                      {getText(value.title, language)}
+                    </h4>
+                    <p className="mt-4 text-base font-bold leading-relaxed text-[var(--muted)] transition-colors group-hover:text-[#111111]/80">
+                      {getText(value.description, language)}
+                    </p>
+                  </motion.div>
+                ))}
               </motion.div>
-            </motion.div>
+            </div>
           </div>
 
         </div>

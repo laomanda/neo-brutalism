@@ -100,7 +100,6 @@ export const homepageCopy = {
     ] satisfies CopyCard[],
   },
   techStack: {
-    eyebrow: { id: "Tech Stack", en: "Tech Stack" },
     title: {
       id: "Stack yang saya pakai untuk membangun web modern.",
       en: "The stack I use to build modern web experiences.",
