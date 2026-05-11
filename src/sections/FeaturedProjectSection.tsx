@@ -1,126 +1,137 @@
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "motion/react";
 import { Link } from "react-router-dom";
+import { ArrowUpRight, Heart, LayoutDashboard, FileText, ClipboardList } from "lucide-react";
 import { BrowserMockup } from "../components/common/BrowserMockup";
 import { Container } from "../components/common/Container";
-import { SectionHeader } from "../components/common/SectionHeader";
-import { Badge } from "../components/ui/Badge";
 import { buttonVariants } from "../components/ui/buttonVariants";
-import { Card } from "../components/ui/Card";
-import { AnimatedSection } from "../components/ui/AnimatedSection";
 import { homepageCopy } from "../data/homepageCopy.data";
 import { projects } from "../data/projects.data";
 import { PROJECT_SCREENSHOTS } from "../data/assets.data";
 import { useLanguage } from "../hooks/useLanguage";
-import { getList } from "../utils/getList";
 import { getText } from "../utils/getText";
-
-import { useRef, useLayoutEffect } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const featuredCopy = homepageCopy.featured;
 
 export function FeaturedProjectSection() {
   const { language } = useLanguage();
   const project = projects.find((item) => item.slug === "dpf-wakaf") ?? projects[0];
-  const features = getList(project.features, language).slice(0, 4);
-  const mockupRef = useRef<HTMLDivElement>(null);
 
-  useLayoutEffect(() => {
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const isMobile = window.innerWidth < 1024;
-    if (prefersReducedMotion || isMobile || !mockupRef.current) return;
-
-    gsap.registerPlugin(ScrollTrigger);
-    
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        mockupRef.current,
-        { y: 30 },
-        {
-          y: -20,
-          ease: "none",
-          scrollTrigger: {
-            trigger: mockupRef.current,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: 0.8,
-          },
-        }
-      );
-    }, mockupRef);
-
-    return () => ctx.revert();
-  }, []);
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+  
+  // Lightweight parallax: mockup moves slightly opposite to scroll
+  const yMockup = useTransform(scrollYProgress, [0, 1], [60, -60]);
 
   return (
-    <section id="featured" className="section-padding">
+    <section ref={sectionRef} id="featured" className="relative overflow-hidden bg-[var(--background)] py-32 lg:py-48">
+      {/* Subtle Background Structure */}
+      <div className="pointer-events-none absolute inset-0 -z-10 opacity-[0.03]">
+        <div className="absolute left-1/2 h-full w-px bg-[var(--border)]" />
+        <div className="absolute top-1/2 w-full h-px bg-[var(--border)]" />
+      </div>
+
       <Container>
-        <AnimatedSection>
-          <SectionHeader
-            eyebrow={getText(featuredCopy.eyebrow, language)}
-            title={getText(featuredCopy.title, language)}
-            description={getText(featuredCopy.description, language)}
-          />
-        </AnimatedSection>
+        {/* Highly Structured 2-Column Editorial Layout */}
+        <div className="grid items-center gap-16 lg:grid-cols-[0.8fr_1.2fr] lg:gap-24">
+          
+          {/* LEFT: Structured Typography & Info */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="flex flex-col lg:pr-8"
+          >
+            <div className="flex items-center gap-4 mb-8">
+              <div className="h-2 w-2 rounded-full bg-[var(--orange)] animate-pulse" />
+              <span className="font-mono text-xs font-black uppercase tracking-[0.2em] text-[var(--foreground)]/50">
+                {getText(featuredCopy.eyebrow, language)}
+              </span>
+            </div>
 
-        <div className="grid items-start gap-8 lg:grid-cols-[0.95fr_1.05fr]">
-          <AnimatedSection>
-            <Card accent="blue" className="h-full">
-              <div className="mb-5 flex flex-wrap gap-2">
-                <Badge variant="status">{project.status}</Badge>
-                <Badge variant="role">{project.role}</Badge>
+            <h2 className="font-heading text-[clamp(4rem,8vw,7rem)] font-black uppercase leading-[0.85] tracking-tighter text-[var(--foreground)]">
+              {project.title}
+            </h2>
+
+            <div className="my-10 h-[2px] w-16 bg-[var(--border)]" />
+
+            <p className="text-xl font-medium leading-relaxed text-[var(--foreground)]/70 lg:text-2xl">
+              {language === "id" 
+                ? "Platform donasi dan wakaf modern dengan sistem arsitektur digital yang bersih dan performa tinggi."
+                : "Modern donation and waqf platform with clean digital architecture and high-performance engineering."
+              }
+            </p>
+
+            <div className="mt-12">
+              <div className="mb-4 font-mono text-[10px] font-black uppercase tracking-[0.2em] text-[var(--foreground)]/40">
+                Core Stack //
               </div>
-              <h3 className="text-balance-custom text-4xl font-extrabold leading-tight sm:text-5xl">{project.title}</h3>
-              <p className="mt-3 text-lg font-extrabold text-[var(--primary)]">
-                {getText(project.subtitle, language)}
-              </p>
-              <p className="mt-5 font-semibold leading-7 text-[var(--foreground)]/80">
-                {getText(project.description, language)}
-              </p>
-
-              <div className="mt-6 flex flex-wrap gap-2">
-                {project.stack.map((tech) => (
-                  <Badge key={tech} variant="tech">
-                    {tech}
-                  </Badge>
-                ))}
-              </div>
-
-              <div className="mt-7 grid gap-3 sm:grid-cols-2">
-                {features.map((feature, index) => (
-                  <div
-                    key={feature}
-                    className="rounded-2xl border-[3px] border-[var(--border)] bg-[var(--background)] p-4 text-sm font-extrabold shadow-[4px_4px_0_var(--border)]"
+              <div className="flex flex-nowrap gap-3 overflow-x-auto pb-4 pt-1 px-1 -mx-1 no-scrollbar [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+                {[
+                  { name: "React", color: "#93C5FD" },    // Harmonious Blue
+                  { name: "Laravel", color: "#FDA4AF" },  // Harmonious Rose/Red
+                  { name: "MySQL", color: "#FDE047" },    // Harmonious Yellow
+                  { name: "Tailwind", color: "#86EFAC" }  // Harmonious Green
+                ].map(tech => (
+                  <div 
+                    key={tech.name} 
+                    className="flex shrink-0 cursor-default items-center gap-2 rounded-full border-2 border-[var(--border)] px-4 py-2 shadow-[2px_2px_0_var(--border)] transition-all duration-200 hover:-translate-x-[2px] hover:-translate-y-[2px] hover:shadow-[4px_4px_0_var(--border)]"
+                    style={{ 
+                      backgroundColor: tech.color,
+                      color: '#09090b'
+                    }}
                   >
-                    <span className="mr-2 text-[var(--orange)]">0{index + 1}</span>
-                    {feature}
+                    <span className="text-xs font-black uppercase tracking-wider">{tech.name}</span>
                   </div>
                 ))}
+                {/* Spacer to prevent expanded hover shadow cutoff */}
+                <div className="w-2 shrink-0" />
               </div>
-
-              <div className="mt-8 flex flex-wrap gap-4">
-                <Link className={buttonVariants("primary", "md")} to={project.route}>
-                  {getText(featuredCopy.detailCta, language)} <ArrowUpRight size={18} strokeWidth={3} />
-                </Link>
-                <Link className={buttonVariants("outline", "md")} to="/#case-study">
-                  {getText(featuredCopy.caseStudyCta, language)} <ArrowRight size={18} strokeWidth={3} />
-                </Link>
-              </div>
-            </Card>
-          </AnimatedSection>
-
-          <AnimatedSection delay={0.08} className="h-full">
-            <div ref={mockupRef} className="h-full motion-safe-transform">
-              <BrowserMockup
-                language={language}
-                label={featuredCopy.screenshotPlaceholder}
-                blocks={featuredCopy.mockupBlocks[language]}
-                screenshot={PROJECT_SCREENSHOTS.dpfWakaf[0]}
-                priority
-              />
             </div>
-          </AnimatedSection>
+
+            <div className="mt-16">
+              <Link 
+                className={buttonVariants("primary", "lg")} 
+                to={project.route}
+                style={{ height: '64px', padding: '0 40px', fontSize: '1.1rem' }}
+              >
+                {getText(featuredCopy.detailCta, language)} <ArrowUpRight className="ml-3" size={24} strokeWidth={4} />
+              </Link>
+            </div>
+          </motion.div>
+
+          {/* RIGHT: Dominant Visual Showcase */}
+          <motion.div 
+            style={{ y: yMockup }}
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-10%" }}
+            className="relative"
+          >
+            {/* The Realistic Physical Shadow (Solid Block instead of CSS box-shadow) */}
+            <div className="absolute inset-0 translate-x-4 translate-y-4 lg:translate-x-8 lg:translate-y-8 rounded-[1.5rem] bg-[var(--border)] transition-transform duration-500" />
+            
+            {/* The Mockup stands completely clean on its own */}
+            <div className="relative z-10">
+                <BrowserMockup
+                  language={language}
+                  label={featuredCopy.screenshotPlaceholder}
+                  blocks={featuredCopy.mockupBlocks[language]}
+                  icons={[Heart, LayoutDashboard, FileText, ClipboardList]}
+                  screenshot={PROJECT_SCREENSHOTS.dpfWakaf[0]}
+                  priority
+                  className="shadow-none"
+                />
+            </div>
+            
+            {/* Minimal Decorative Crosshairs */}
+            <div className="absolute -left-4 -top-4 h-8 w-8 border-l-2 border-t-2 border-[var(--border)]/20 z-20" />
+            <div className="absolute -bottom-4 -right-4 h-8 w-8 border-b-2 border-r-2 border-[var(--border)]/20 z-0 lg:bottom-4 lg:right-4" />
+          </motion.div>
+
         </div>
       </Container>
     </section>

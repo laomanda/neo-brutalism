@@ -22,7 +22,7 @@ export function MainLayout() {
   }, [location.hash]);
 
   return (
-    <div className="relative min-h-screen overflow-x-hidden bg-[var(--background)] text-[var(--foreground)]">
+    <div className="relative min-h-screen overflow-x-clip bg-[var(--background)] text-[var(--foreground)]">
       <div className="pointer-events-none absolute inset-x-0 top-0 z-0 h-[110vh] overflow-hidden" aria-hidden="true">
         <div className="absolute inset-0 bg-radial-accent" />
         <div className="absolute inset-0 bg-brutal-grid" />

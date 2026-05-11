@@ -47,12 +47,14 @@ export function ProjectCard({ project, language }: ProjectCardProps) {
           )}
         </motion.div>
 
-        <div className="mb-4 flex flex-wrap gap-2">
+        <h3 className="text-2xl font-extrabold">{project.title}</h3>
+        <p className="mt-2 font-bold text-[var(--primary)]">{getText(project.subtitle, language)}</p>
+
+        <div className="mt-4 mb-4 flex flex-wrap gap-2">
           <Badge variant="status">{project.status}</Badge>
           <Badge variant="role">{project.role}</Badge>
         </div>
-        <h3 className="text-2xl font-extrabold">{project.title}</h3>
-        <p className="mt-2 font-bold text-[var(--primary)]">{getText(project.subtitle, language)}</p>
+
         <p className="mt-4 line-clamp-4 text-sm font-semibold leading-6 text-[var(--foreground)]/80">
           {getText(project.description, language)}
         </p>

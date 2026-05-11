@@ -211,7 +211,7 @@ export const projects: Project[] = [
     },
     role: "Web Developer",
     stack: [
-      "PHP 8.2",
+      "PHP 8.3",
       "Laravel 12",
       "Laravel Blade",
       "Tailwind CSS",

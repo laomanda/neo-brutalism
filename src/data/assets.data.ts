@@ -85,8 +85,8 @@ export const PROJECT_SCREENSHOTS = {
       src: dpfLandingPage,
       status: "ready",
       label: {
-        id: "Landing page DPF WAKAF",
-        en: "DPF WAKAF landing page",
+        id: "DPF WAKAF",
+        en: "DPF WAKAF",
       },
       alt: {
         id: "Screenshot landing page DPF WAKAF",
@@ -233,8 +233,8 @@ export const PROJECT_SCREENSHOTS = {
       src: laundryAuth,
       status: "ready",
       label: {
-        id: "Halaman autentikasi Laundry",
-        en: "Laundry authentication page",
+        id: "Laundry Application",
+        en: "Laundry Application",
       },
       alt: {
         id: "Screenshot halaman autentikasi Laundry",

@@ -12,6 +12,7 @@ type CaseStudyStepCopy = {
   title: BilingualText;
   description: BilingualText;
   accent: Accent;
+  icon: string;
 };
 
 export type TechFilterKey = "all" | TechCategory;
@@ -155,6 +156,7 @@ export const homepageCopy = {
           en: "The foundation needed a more modern digital platform to present programs, manage content, support interactive services, and structure the donation/waqf flow.",
         },
         accent: "orange",
+        icon: "lucide:target",
       },
       {
         title: { id: "Role", en: "Role" },
@@ -163,6 +165,7 @@ export const homepageCopy = {
           en: "I worked as a Fullstack Developer, helping build the frontend, structure pages, integrate with the backend, and prepare the system flow.",
         },
         accent: "blue",
+        icon: "lucide:user-cog",
       },
       {
         title: { id: "Solution", en: "Solution" },
@@ -171,6 +174,7 @@ export const homepageCopy = {
           en: "The solution used React for the modern interface and Laravel + MySQL for the backend, dashboard, content, and transaction data.",
         },
         accent: "lime",
+        icon: "lucide:lightbulb",
       },
       {
         title: { id: "Build Process", en: "Build Process" },
@@ -179,6 +183,7 @@ export const homepageCopy = {
           en: "The build process focused on UI structure, program management, articles, service forms, admin dashboard, and maintainable data.",
         },
         accent: "purple",
+        icon: "lucide:blocks",
       },
       {
         title: { id: "Result", en: "Result" },
@@ -187,6 +192,7 @@ export const homepageCopy = {
           en: "The result is a cleaner, more modern platform ready to be developed further for DPF WAKAF's digital needs.",
         },
         accent: "default",
+        icon: "lucide:flag",
       },
     ] satisfies CaseStudyStepCopy[],
   },
