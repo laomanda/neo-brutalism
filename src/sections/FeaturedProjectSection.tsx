@@ -13,6 +13,13 @@ import { getText } from "../utils/getText";
 
 const featuredCopy = homepageCopy.featured;
 
+const techStack = [
+  { name: "React",   color: "#93C5FD" },
+  { name: "Laravel", color: "#FDA4AF" },
+  { name: "MySQL",   color: "#FDE047" },
+  { name: "Tailwind",color: "#86EFAC" },
+];
+
 export function FeaturedProjectSection() {
   const { language } = useLanguage();
   const project = projects.find((item) => item.slug === "dpf-wakaf") ?? projects[0];
@@ -22,114 +29,120 @@ export function FeaturedProjectSection() {
     target: sectionRef,
     offset: ["start end", "end start"],
   });
-  
-  // Lightweight parallax: mockup moves slightly opposite to scroll
-  const yMockup = useTransform(scrollYProgress, [0, 1], [60, -60]);
+
+  // Parallax only on large screens via CSS; value is safe-small for mobile too
+  const yMockup = useTransform(scrollYProgress, [0, 1], [20, -20]);
 
   return (
-    <section ref={sectionRef} id="featured" className="relative overflow-hidden bg-[var(--background)] py-32 lg:py-48">
-      {/* Subtle Background Structure */}
+    <section
+      ref={sectionRef}
+      id="featured"
+      className="relative bg-[var(--background)] py-20 lg:py-40 overflow-x-hidden"
+    >
+      {/* Subtle crosshair background */}
       <div className="pointer-events-none absolute inset-0 -z-10 opacity-[0.03]">
         <div className="absolute left-1/2 h-full w-px bg-[var(--border)]" />
         <div className="absolute top-1/2 w-full h-px bg-[var(--border)]" />
       </div>
 
       <Container>
-        {/* Highly Structured 2-Column Editorial Layout */}
-        <div className="grid items-center gap-16 lg:grid-cols-[0.8fr_1.2fr] lg:gap-24">
-          
-          {/* LEFT: Structured Typography & Info */}
+        <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20 lg:items-center">
+
+          {/* ── LEFT: Copy ────────────────────────────────── */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="flex flex-col lg:pr-8"
+            transition={{ duration: 0.5 }}
+            className="flex flex-col"
           >
-            <div className="flex items-center gap-4 mb-8">
+            {/* Eyebrow */}
+            <div className="flex items-center gap-3 mb-6">
               <div className="h-2 w-2 rounded-full bg-[var(--orange)] animate-pulse" />
-              <span className="font-mono text-xs font-black uppercase tracking-[0.2em] text-[var(--foreground)]/50">
+              <span className="font-mono text-[11px] font-black uppercase tracking-[0.2em] text-[var(--foreground)]/50">
                 {getText(featuredCopy.eyebrow, language)}
               </span>
             </div>
 
-            <h2 className="font-heading text-[clamp(4rem,8vw,7rem)] font-black uppercase leading-[0.85] tracking-tighter text-[var(--foreground)]">
+            {/* Title — responsive clamp agar tidak meluber di mobile */}
+            <h2 className="font-heading text-[clamp(2.4rem,11vw,7rem)] font-black uppercase leading-[0.9] tracking-tighter text-[var(--foreground)]">
               {project.title}
             </h2>
 
-            <div className="my-10 h-[2px] w-16 bg-[var(--border)]" />
+            <div className="my-6 lg:my-8 h-[2px] w-12 bg-[var(--border)]" />
 
-            <p className="text-xl font-medium leading-relaxed text-[var(--foreground)]/70 lg:text-2xl">
-              {language === "id" 
+            <p className="text-base lg:text-xl font-medium leading-relaxed text-[var(--foreground)]/70">
+              {language === "id"
                 ? "Platform donasi dan wakaf modern dengan sistem arsitektur digital yang bersih dan performa tinggi."
-                : "Modern donation and waqf platform with clean digital architecture and high-performance engineering."
-              }
+                : "Modern donation and waqf platform with clean digital architecture and high-performance engineering."}
             </p>
 
-            <div className="mt-12">
-              <div className="mb-4 font-mono text-[10px] font-black uppercase tracking-[0.2em] text-[var(--foreground)]/40">
+            {/* Tech Stack — flex-wrap agar tidak meluber */}
+            <div className="mt-8 lg:mt-10">
+              <div className="mb-3 font-mono text-[10px] font-black uppercase tracking-[0.2em] text-[var(--foreground)]/40">
                 Core Stack //
               </div>
-              <div className="flex flex-nowrap gap-3 overflow-x-auto pb-4 pt-1 px-1 -mx-1 no-scrollbar [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-                {[
-                  { name: "React", color: "#93C5FD" },    // Harmonious Blue
-                  { name: "Laravel", color: "#FDA4AF" },  // Harmonious Rose/Red
-                  { name: "MySQL", color: "#FDE047" },    // Harmonious Yellow
-                  { name: "Tailwind", color: "#86EFAC" }  // Harmonious Green
-                ].map(tech => (
-                  <div 
-                    key={tech.name} 
-                    className="flex shrink-0 cursor-default items-center gap-2 rounded-full border-2 border-[var(--border)] px-4 py-2 shadow-[2px_2px_0_var(--border)] transition-all duration-200 hover:-translate-x-[2px] hover:-translate-y-[2px] hover:shadow-[4px_4px_0_var(--border)]"
-                    style={{ 
-                      backgroundColor: tech.color,
-                      color: '#09090b'
-                    }}
+              <div className="flex flex-wrap gap-2">
+                {techStack.map((tech) => (
+                  <div
+                    key={tech.name}
+                    className="flex shrink-0 cursor-default items-center rounded-full border-2 border-[var(--border)] px-3 py-1.5 shadow-[2px_2px_0_var(--border)] transition-all duration-200 hover:-translate-y-[2px] hover:shadow-[3px_3px_0_var(--border)]"
+                    style={{ backgroundColor: tech.color, color: "#09090b" }}
                   >
                     <span className="text-xs font-black uppercase tracking-wider">{tech.name}</span>
                   </div>
                 ))}
-                {/* Spacer to prevent expanded hover shadow cutoff */}
-                <div className="w-2 shrink-0" />
               </div>
             </div>
 
-            <div className="mt-16">
-              <Link 
-                className={buttonVariants("primary", "lg")} 
+            {/* CTA */}
+            <div className="mt-10 lg:mt-14">
+              <Link
+                className={`${buttonVariants("primary", "lg")} w-full sm:w-auto justify-center`}
                 to={project.route}
-                style={{ height: '64px', padding: '0 40px', fontSize: '1.1rem' }}
               >
-                {getText(featuredCopy.detailCta, language)} <ArrowUpRight className="ml-3" size={24} strokeWidth={4} />
+                {getText(featuredCopy.detailCta, language)}
+                <ArrowUpRight className="ml-2 shrink-0" size={22} strokeWidth={3.5} />
               </Link>
             </div>
           </motion.div>
 
-          {/* RIGHT: Dominant Visual Showcase */}
-          <motion.div 
+          {/* ── RIGHT: Mockup ─────────────────────────────── */}
+          {/* 
+            Wrapper: pr + pb buat ruang solid-shadow supaya tidak meluber dari layar.
+            Solid shadow dikurangi di mobile (translate-3) dan lebih besar di desktop (translate-8).
+          */}
+          <motion.div
             style={{ y: yMockup }}
-            initial={{ opacity: 0, x: 30 }}
+            initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-10%" }}
-            className="relative"
+            viewport={{ once: true, margin: "-5%" }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="relative pr-3 pb-3 lg:pr-8 lg:pb-8"
           >
-            {/* The Realistic Physical Shadow (Solid Block instead of CSS box-shadow) */}
-            <div className="absolute inset-0 translate-x-4 translate-y-4 lg:translate-x-8 lg:translate-y-8 rounded-[1.5rem] bg-[var(--border)] transition-transform duration-500" />
-            
-            {/* The Mockup stands completely clean on its own */}
+            {/* Solid block shadow */}
+            <div className="absolute inset-0 translate-x-3 translate-y-3 lg:translate-x-8 lg:translate-y-8 rounded-[1.5rem] bg-[var(--border)]" />
+
+            {/* Mockup card */}
             <div className="relative z-10">
-                <BrowserMockup
-                  language={language}
-                  label={featuredCopy.screenshotPlaceholder}
-                  blocks={featuredCopy.mockupBlocks[language]}
-                  icons={[Heart, LayoutDashboard, FileText, ClipboardList]}
-                  screenshot={PROJECT_SCREENSHOTS.dpfWakaf[0]}
-                  priority
-                  className="shadow-none"
-                />
+              <BrowserMockup
+                language={language}
+                label={{ id: project.title, en: project.title }}
+                blocks={featuredCopy.mockupBlocks[language]}
+                icons={[Heart, LayoutDashboard, FileText, ClipboardList]}
+                screenshot={
+                  PROJECT_SCREENSHOTS[
+                    project.screenshotsKey as keyof typeof PROJECT_SCREENSHOTS
+                  ][0]
+                }
+                priority
+                className="shadow-none"
+              />
             </div>
-            
-            {/* Minimal Decorative Crosshairs */}
-            <div className="absolute -left-4 -top-4 h-8 w-8 border-l-2 border-t-2 border-[var(--border)]/20 z-20" />
-            <div className="absolute -bottom-4 -right-4 h-8 w-8 border-b-2 border-r-2 border-[var(--border)]/20 z-0 lg:bottom-4 lg:right-4" />
+
+            {/* Corner crosshairs — decorative */}
+            <div className="hidden lg:block absolute -left-4 -top-4 h-8 w-8 border-l-2 border-t-2 border-[var(--border)]/20 z-20" />
+            <div className="hidden lg:block absolute -bottom-4 -right-4 h-8 w-8 border-b-2 border-r-2 border-[var(--border)]/20 z-0" />
           </motion.div>
 
         </div>

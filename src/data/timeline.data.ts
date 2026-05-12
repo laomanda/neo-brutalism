@@ -23,6 +23,20 @@ export const timelineItems: TimelineItemData[] = [
   },
   {
     title: {
+      id: "Magang Kelas Industri - IT Developer",
+      en: "Industrial Class Internship - IT Developer",
+    },
+    period: {
+      id: "Mar — Jun 2025",
+      en: "Mar — Jun 2025",
+    },
+    description: {
+      id: "Mengikuti program magang kelas industri di DPF WAKAF sebagai IT Developer untuk mendapatkan pengalaman industri langsung.",
+      en: "Participated in an industrial class internship program at DPF WAKAF as an IT Developer to gain direct industry experience.",
+    },
+  },
+  {
+    title: {
       id: "PKL sebagai Fullstack Developer",
       en: "Fullstack Developer Internship",
     },

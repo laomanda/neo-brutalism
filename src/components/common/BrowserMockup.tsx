@@ -47,15 +47,16 @@ export function BrowserMockup({
         </div>
       </div>
 
-      <div className="p-4 flex flex-col gap-4">
-        <div className="relative overflow-hidden rounded-xl border-[3px] border-border bg-muted shadow-brutal-sm aspect-[4/3] md:aspect-video">
+      <div className="p-2 sm:p-4 flex flex-col gap-3 sm:gap-4">
+        <div className="relative overflow-hidden rounded-xl border-[3px] border-border bg-muted shadow-brutal-sm aspect-video w-full">
           {screenshot ? (
             <ProjectScreenshotFrame
               screenshot={screenshot}
               language={language}
               accent={accent}
               priority={priority}
-              className="w-full h-full [&>div:first-child]:border-none [&>div:first-child]:shadow-none [&>div:first-child]:rounded-none [&>div:first-child>div:first-child]:hidden [&>div:last-child]:hidden"
+              showTopBar={false}
+              className="w-full h-full border-none shadow-none rounded-none"
             />
           ) : (
             <AssetPlaceholder
