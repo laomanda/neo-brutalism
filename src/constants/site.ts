@@ -29,7 +29,7 @@ export const SITE_CONFIG = {
     "Laravel Portfolio",
     "TypeScript Developer"
   ],
-  siteUrl: "https://jakkob-portfolio.vercel.app",
+  siteUrl: "https://jakkob-oktapianus-michael-panjaitan.vercel.app",
   defaultTitle: "Jakkob Panjaitan — Frontend Developer",
   titleTemplate: "%s | Jakkob Panjaitan",
   locale: "id_ID",
