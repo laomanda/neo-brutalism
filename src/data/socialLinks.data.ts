@@ -12,9 +12,9 @@ export type SocialLink = {
 
 export const socialLinks: SocialLink[] = [
   {
-    label: "Email",
+    label: "Gmail",
     href: `mailto:${SITE_CONFIG.email}`,
-    icon: "lucide:mail",
+    icon: "simple-icons:gmail",
     type: "email",
     external: false,
     displayText: {

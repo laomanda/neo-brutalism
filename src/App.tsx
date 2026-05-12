@@ -6,11 +6,15 @@ import { HomePage } from "./pages/HomePage";
 
 const ProjectDetailPage = lazy(() => import("./pages/ProjectDetailPage").then(module => ({ default: module.ProjectDetailPage })));
 const ProductDetailPage = lazy(() => import("./pages/ProductDetailPage").then(module => ({ default: module.ProductDetailPage })));
+const PaymentPage = lazy(() => import("./pages/PaymentPage").then(module => ({ default: module.PaymentPage })));
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage").then(module => ({ default: module.NotFoundPage })));
+
+import { CustomCursor } from "./components/ui/CustomCursor";
 
 function App() {
   return (
     <BrowserRouter>
+      <CustomCursor />
       <Routes>
         <Route element={<MainLayout />}>
           <Route path={ROUTES.home} element={<HomePage />} />
@@ -27,6 +31,14 @@ function App() {
             element={
               <Suspense fallback={<div className="h-screen w-full" />}>
                 <ProductDetailPage />
+              </Suspense>
+            } 
+          />
+          <Route 
+            path="/checkout/:slug" 
+            element={
+              <Suspense fallback={<div className="h-screen w-full" />}>
+                <PaymentPage />
               </Suspense>
             } 
           />

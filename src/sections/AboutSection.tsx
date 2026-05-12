@@ -1,5 +1,7 @@
+import { useState } from "react";
 import {
   motion,
+  AnimatePresence,
   useMotionTemplate,
   useMotionValue,
   useReducedMotion,
@@ -8,21 +10,25 @@ import {
   useTransform,
 } from "motion/react";
 import { useRef, type MouseEventHandler } from "react";
+import { ArrowRight, ArrowLeft, Sparkles} from "lucide-react";
 import { Container } from "../components/common/Container";
 import { ResponsiveImage } from "../components/common/ResponsiveImage";
 import { IMAGE_ASSETS } from "../data/assets.data";
 import { homepageCopy } from "../data/homepageCopy.data";
-
 import { useLanguage } from "../hooks/useLanguage";
 import { getText } from "../utils/getText";
 
-
+// Import new images
+import hercules from "../assets/images/hercules.webp";
+import sqAirlines from "../assets/images/sq-airlines.webp";
+import phantom from "../assets/images/phantom.webp";
+import dragon from "../assets/images/dragon.webp";
 
 export function AboutSection() {
   const { language } = useLanguage();
   const reduceMotion = useReducedMotion();
   const sectionRef = useRef<HTMLElement | null>(null);
-
+  const [activeSlide, setActiveSlide] = useState(0);
 
   // 3D & Interaction States
   const portraitX = useMotionValue(0);
@@ -46,8 +52,6 @@ export function AboutSection() {
   const portraitRotateX = useTransform(smoothPortraitY, [-0.5, 0.5], [6, -6]);
 
   const spotlightBackground = useMotionTemplate`radial-gradient(circle at ${spotX}% ${spotY}%, rgba(182, 255, 59, 0.15), transparent 40%)`;
-
-
 
   const handleMouseMove: MouseEventHandler<HTMLDivElement> = (event) => {
     if (reduceMotion) return;
@@ -76,26 +80,104 @@ export function AboutSection() {
       </motion.div>
 
       <Container>
-        {/* Main Bento Layout: 3 Cards Only */}
         <div className="relative z-10 grid gap-6 lg:grid-cols-3 lg:grid-rows-[auto_auto]">
           
-          {/* Card 1: The Statement (Takes up 2 columns) */}
+          {/* Card 1: The Slider Container (Takes up 2 columns) */}
           <motion.div
-            className="group relative overflow-hidden rounded-[2rem] border-[3px] border-[var(--border)] bg-[var(--card)] p-8 shadow-[8px_8px_0_var(--border)] lg:col-span-2"
+            className="group relative min-h-[500px] overflow-hidden rounded-[2rem] border-[3px] border-[var(--border)] bg-[var(--card)] p-0 shadow-[8px_8px_0_var(--border)] lg:col-span-2"
             onMouseMove={handleMouseMove}
           >
             <motion.div className="pointer-events-none absolute inset-0" style={{ background: spotlightBackground }} />
             
-            <div className="relative z-10 flex h-full flex-col justify-between gap-12">
-              <div>
-                <h2 className="max-w-[15ch] font-heading text-[clamp(2.5rem,6vw,5.5rem)] font-black uppercase leading-[0.9] text-[var(--foreground)]">
-                  {getText(aboutCopy.bentoTitle, language)}
-                </h2>
-                <p className="mt-6 max-w-lg text-lg font-bold leading-relaxed text-[var(--foreground)]/70">
-                  {getText(aboutCopy.bentoDescription, language)}
-                </p>
-              </div>
+            <div className="relative h-full w-full">
+              <AnimatePresence mode="wait" initial={false}>
+                {activeSlide === 0 ? (
+                  /* SLIDE 1: Vision Statement */
+                  <motion.div
+                    key="vision-slide"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: 20 }}
+                    transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                    className="flex h-full flex-col justify-between p-8"
+                  >
+                    <div>
+                      <h2 className="max-w-[15ch] font-heading text-[clamp(2.5rem,6vw,5.5rem)] font-black uppercase leading-[0.9] text-[var(--foreground)]">
+                        {getText(aboutCopy.bentoTitle, language)}
+                      </h2>
+                      <p className="mt-8 max-w-lg text-lg font-bold leading-relaxed text-[var(--foreground)]/70">
+                        {getText(aboutCopy.bentoDescription, language)}
+                      </p>
+                    </div>
 
+                    <button
+                      onClick={() => setActiveSlide(1)}
+                      className="group/btn mt-12 flex w-fit items-center gap-3 rounded-full border-[3px] border-black bg-[var(--lime)] px-6 py-3 font-black uppercase tracking-wider text-black shadow-[4px_4px_0_black] transition hover:-translate-y-1 hover:shadow-[6px_6px_0_black] active:translate-y-0 active:shadow-[2px_2px_0_black]"
+                    >
+                      {language === "id" ? "Kenali Jakkob" : "Know More"}
+                      <ArrowRight size={20} strokeWidth={3} className="transition-transform group-hover/btn:translate-x-1" />
+                    </button>
+                  </motion.div>
+                ) : (
+                  /* SLIDE 2: Personal Branding */
+                  <motion.div
+                    key="personal-slide"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                    className="flex h-full flex-col p-6 lg:p-8"
+                  >
+                    {/* TOP: Cinema Strip Header */}
+                    <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
+                      {[hercules, sqAirlines, phantom, dragon].map((img, i) => (
+                        <div key={i} className="group/img relative aspect-video overflow-hidden rounded-xl border-2 border-black shadow-[4px_4px_0_black]">
+                          <img 
+                            src={img} 
+                            alt={`Hobby ${i}`} 
+                            className="h-full w-full object-cover transition-transform duration-500 group-hover/img:scale-110" 
+                          />
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* BOTTOM: Bio Content */}
+                    <div className="mt-8 grid gap-8 lg:grid-cols-[1fr_0.4fr] lg:items-end">
+                      <div>
+                        <div className="mb-4 flex items-center gap-3">
+                          <div className="rounded-full bg-[var(--primary)]/10 p-2 text-[var(--primary)]">
+                            <Sparkles size={22} strokeWidth={3} />
+                          </div>
+                          <span className="text-xs font-black uppercase tracking-[0.2em] text-[var(--foreground)]/50">
+                            {language === "id" ? "Siapa saya?" : "Who am I?"}
+                          </span>
+                        </div>
+                        
+                        <h2 className="font-heading text-3xl font-black uppercase leading-tight lg:text-5xl">
+                          {language === "id" ? "Bisa panggil saya Jakkob atau Kob." : "You can call me Jakkob or Kob."}
+                        </h2>
+                        
+                        <p className="mt-6 max-w-3xl text-base font-bold leading-relaxed text-[var(--foreground)]/80 lg:text-lg">
+                          {language === "id" 
+                            ? "Di luar koding, saya seorang kolektor Hot Wheels dan penggemar Aviation—karena saya menyukai detail teknis. Saya juga suka masak, karena meracik bumbu itu sama seninya dengan meracik baris kode."
+                            : "Outside of coding, I'm a Hot Wheels collector and an Aviation enthusiast—driven by my love for technical details. I also love cooking, as balancing flavors is just as much an art as balancing lines of code."
+                          }
+                        </p>
+                      </div>
+
+                      <div className="flex justify-start lg:justify-end">
+                        <button
+                          onClick={() => setActiveSlide(0)}
+                          className="group/btn flex items-center gap-3 rounded-full border-[3px] border-black bg-[var(--card-2)] px-6 py-3 font-black uppercase tracking-wider text-black shadow-[4px_4px_0_black] transition hover:-translate-y-1 hover:shadow-[6px_6px_0_black] active:translate-y-0 active:shadow-[2px_2px_0_black]"
+                        >
+                          <ArrowLeft size={20} strokeWidth={3} className="transition-transform group-hover/btn:-translate-x-1" />
+                          {language === "id" ? "Kembali" : "Back"}
+                        </button>
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           </motion.div>
 
@@ -126,7 +208,6 @@ export function AboutSection() {
             </div>
 
             <div className="relative w-full overflow-hidden pt-16 pb-10 lg:pt-20 lg:pb-14">
-              {/* Cinematic Edge Fade Mask */}
               <div 
                 className="pointer-events-none absolute inset-0 z-10"
                 style={{

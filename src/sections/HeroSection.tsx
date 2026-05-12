@@ -77,6 +77,7 @@ export function HeroStageContent({
         style={heroContentStyle}
         onMouseMove={onHeroMouseMove}
         onMouseLeave={onHeroMouseLeave}
+        data-cursor="ship"
       >
         <Container>
           <div className="grid gap-5 lg:grid-cols-[minmax(0,0.95fr)_minmax(360px,460px)] lg:items-center lg:gap-14">
@@ -123,9 +124,6 @@ export function HeroStageContent({
                 <div className="mt-6 grid gap-2.5 sm:flex sm:flex-wrap sm:items-center">
                   <Link className={buttonVariants("primary", "md", "w-full sm:w-auto")} to="/#featured">
                     {getText(heroCopy.primaryCta, language)} <ArrowDown size={18} strokeWidth={3} />
-                  </Link>
-                  <Link className={buttonVariants("outline", "md", "w-full sm:w-auto")} to="/#case-study">
-                    {getText(heroCopy.secondaryCta, language)} <ArrowUpRight size={18} strokeWidth={3} />
                   </Link>
                   {SITE_CONFIG.cvReady ? (
                     <a
@@ -174,6 +172,7 @@ export function HeroStageContent({
         ref={animationRefs?.marquee}
         className="relative z-10 will-change-transform"
         style={marqueeStyle}
+        data-cursor="drag"
       >
         <BrutalMarquee />
       </motion.div>

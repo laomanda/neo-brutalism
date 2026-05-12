@@ -62,6 +62,63 @@ export const products: ProductService[] = [
     accent: "lime",
   },
   {
+    slug: "frontend-company-profile",
+    title: {
+      id: "Company Profile, Portfolio, Web Lainnya",
+      en: "Company Profile, Portfolio, Other Web Development",
+    },
+    description: {
+      id: "Jasa pembuatan website berupa company profile, personal brand, UMKM, komunitas, atau bisnis.",
+      en: "Website or company profile development service for organizations, personal brands, small businesses, communities, or companies.",
+    },
+    route: ROUTES.products.frontendCompanyProfile,
+    deliverables: {
+      id: [
+        "Homepage",
+        "Section tentang/profil",
+        "Section layanan",
+        "Portfolio/gallery section",
+        "Contact section",
+        "Responsive UI",
+        "SEO dasar",
+        "Project siap deploy",
+      ],
+      en: [
+        "Homepage",
+        "About/profile section",
+        "Services section",
+        "Portfolio/gallery section",
+        "Contact section",
+        "Responsive UI",
+        "Basic SEO",
+        "Deployment-ready project",
+      ],
+    },
+    targetUsers: {
+      id: ["Organisasi", "Yayasan", "Komunitas", "Bisnis", "Personal portfolio"],
+      en: ["Organizations", "Foundations", "Communities", "Businesses", "Personal portfolios"],
+    },
+    process: {
+      id: [
+        "Diskusi kebutuhan website",
+        "Penyusunan struktur halaman",
+        "Pengembangan frontend",
+        "Revisi, testing, dan deploy",
+      ],
+      en: [
+        "Website needs discussion",
+        "Page structure planning",
+        "Frontend development",
+        "Revision, testing, and deployment",
+      ],
+    },
+    note: {
+      id: "Layanan ini cocok untuk kebutuhan website profil yang ingin tampil rapi, modern, dan mudah diakses.",
+      en: "This service is suitable for profile websites that need to look clean, modern, and easy to access.",
+    },
+    accent: "blue",
+  },
+  {
     slug: "landing-page-package",
     title: {
       id: "Landing Page Package",
@@ -115,62 +172,5 @@ export const products: ProductService[] = [
       en: "This package focuses on a clear, fast, and usable promotional page.",
     },
     accent: "orange",
-  },
-  {
-    slug: "frontend-company-profile",
-    title: {
-      id: "Frontend / Company Profile Service",
-      en: "Frontend / Company Profile Service",
-    },
-    description: {
-      id: "Jasa pembuatan frontend website atau company profile modern untuk organisasi, personal brand, UMKM, komunitas, atau bisnis.",
-      en: "Frontend website or company profile development service for organizations, personal brands, small businesses, communities, or companies.",
-    },
-    route: ROUTES.products.frontendCompanyProfile,
-    deliverables: {
-      id: [
-        "Homepage",
-        "Section tentang/profil",
-        "Section layanan",
-        "Portfolio/gallery section",
-        "Contact section",
-        "Responsive UI",
-        "SEO dasar",
-        "Project siap deploy",
-      ],
-      en: [
-        "Homepage",
-        "About/profile section",
-        "Services section",
-        "Portfolio/gallery section",
-        "Contact section",
-        "Responsive UI",
-        "Basic SEO",
-        "Deployment-ready project",
-      ],
-    },
-    targetUsers: {
-      id: ["Organisasi", "Yayasan", "Komunitas", "Bisnis", "Personal portfolio"],
-      en: ["Organizations", "Foundations", "Communities", "Businesses", "Personal portfolios"],
-    },
-    process: {
-      id: [
-        "Diskusi kebutuhan website",
-        "Penyusunan struktur halaman",
-        "Pengembangan frontend",
-        "Revisi, testing, dan deploy",
-      ],
-      en: [
-        "Website needs discussion",
-        "Page structure planning",
-        "Frontend development",
-        "Revision, testing, and deployment",
-      ],
-    },
-    note: {
-      id: "Layanan ini cocok untuk kebutuhan website profil yang ingin tampil rapi, modern, dan mudah diakses.",
-      en: "This service is suitable for profile websites that need to look clean, modern, and easy to access.",
-    },
-    accent: "blue",
   },
 ];

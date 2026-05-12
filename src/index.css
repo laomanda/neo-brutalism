@@ -24,6 +24,18 @@
   --nav-shadow: 0 14px 36px rgba(17, 17, 17, 0.14);
 }
 
+@media (hover: hover) and (pointer: fine) {
+  body, 
+  a, 
+  button, 
+  [role="button"], 
+  input, 
+  textarea, 
+  select {
+    cursor: none !important;
+  }
+}
+
 * {
   box-sizing: border-box;
 }

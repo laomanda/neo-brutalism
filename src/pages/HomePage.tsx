@@ -1,7 +1,6 @@
 import { AboutSection } from "../sections/AboutSection";
 import { CaseStudySection } from "../sections/CaseStudySection";
 import { ContactSection } from "../sections/ContactSection";
-import { DevelopmentPhilosophySection } from "../sections/DevelopmentPhilosophySection";
 import { ExperienceTimelineSection } from "../sections/ExperienceTimelineSection";
 import { FeaturedProjectSection } from "../sections/FeaturedProjectSection";
 import { HeroSection } from "../sections/HeroSection";
@@ -18,14 +17,13 @@ export function HomePage() {
       <SEO path="/" />
       <HeroSection />
       <AboutSection />
+      <StatsSection />
       <TechStackSection />
       <FeaturedProjectSection />
       <CaseStudySection />
       <ProjectGallerySection />
       <ExperienceTimelineSection />
       <ProductsServicesSection />
-      <DevelopmentPhilosophySection />
-      <StatsSection />
       <ContactSection />
     </>
   );

@@ -9,7 +9,7 @@ import { cn } from "../../utils/cn";
 import { getText } from "../../utils/getText";
 import { Container } from "../common/Container";
 
-const footerSocialLabels = new Set(["GitHub", "LinkedIn", "Instagram", "Email"]);
+const footerSocialLabels = new Set(["GitHub", "LinkedIn", "Instagram", "Gmail"]);
 const footerQuickLinkHrefs = new Set(["/", "/#projects", "/#products", "/#contact"]);
 const footerTech = ["React", "TypeScript", "Laravel", "Tailwind"];
 
@@ -44,8 +44,8 @@ function getSocialHoverClass(label: string) {
       return "hover:border-[#0A66C2] hover:bg-[#0A66C2] hover:text-white";
     case "Instagram":
       return "hover:border-transparent hover:bg-gradient-to-tr hover:from-[#f09433] hover:via-[#dc2743] hover:to-[#bc1888] hover:text-white";
-    case "Email":
-      return "hover:border-[var(--orange)] hover:bg-[var(--orange)] hover:text-black";
+    case "Gmail":
+      return "hover:border-[#EA4335] hover:bg-[#EA4335] hover:text-white";
     default:
       return "hover:border-[var(--lime)] hover:bg-[var(--lime)] hover:text-black";
   }
@@ -163,7 +163,7 @@ export function Footer() {
               <div className="grid grid-cols-4 gap-2 sm:flex sm:flex-wrap">
                 {footerSocials.map((link) => {
                   const hoverTextClass =
-                    link.label === "GitHub" || link.label === "Email"
+                    link.label === "GitHub"
                       ? "group-hover:text-black"
                       : "group-hover:text-white";
 
@@ -197,7 +197,6 @@ export function Footer() {
 
         <div className="mt-6 flex flex-col gap-2 rounded-2xl border-2 border-[var(--border)] bg-[var(--card)] px-4 py-3 text-xs font-bold text-[var(--foreground)]/70 sm:flex-row sm:items-center sm:justify-between">
           <p>(c) {year} {SITE_CONFIG.ownerName}. {getText(uiCopy.allRightsReserved, language)}</p>
-          <p>Built with React + TypeScript</p>
         </div>
       </Container>
     </footer>

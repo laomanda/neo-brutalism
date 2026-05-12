@@ -119,6 +119,7 @@ export function FeaturedProjectSection() {
             viewport={{ once: true, margin: "-5%" }}
             transition={{ duration: 0.5, delay: 0.1 }}
             className="relative pr-3 pb-3 lg:pr-8 lg:pb-8"
+            data-cursor="view"
           >
             {/* Solid block shadow */}
             <div className="absolute inset-0 translate-x-3 translate-y-3 lg:translate-x-8 lg:translate-y-8 rounded-[1.5rem] bg-[var(--border)]" />

@@ -10,30 +10,48 @@ import { Badge } from "../ui/Badge";
 import { buttonVariants } from "../ui/buttonVariants";
 import { Card } from "../ui/Card";
 import { FeatureList } from "./FeatureList";
+import { cn } from "../../utils/cn";
 
 type ProductCardProps = {
   product: ProductService;
   language: Language;
+  className?: string;
 };
 
 const productCardCopy = homepageCopy.products;
 
-export function ProductCard({ product, language }: ProductCardProps) {
+export function ProductCard({ product, language, className }: ProductCardProps) {
   const deliverables = getList(product.deliverables, language);
 
   return (
-    <Card accent={product.accent} className="flex h-full flex-col justify-between gap-5 p-5" interactive>
+    <Card 
+      accent={product.accent} 
+      className={cn("group flex h-full flex-col justify-between gap-6 p-6 sm:p-8", className)} 
+      interactive
+      data-cursor="build"
+    >
       <div>
-        <Badge variant="category">{getText(uiCopy.secondaryOffering, language)}</Badge>
-        <h3 className="mt-4 text-2xl font-extrabold">{getText(product.title, language)}</h3>
-        <p className="mt-4 text-sm font-semibold leading-6 text-[var(--foreground)]/80">
+        <Badge variant="category" className="mb-2">{getText(uiCopy.secondaryOffering, language)}</Badge>
+        
+        <h3 className="mt-5 font-heading text-2xl font-black leading-tight sm:text-3xl">
+          {getText(product.title, language)}
+        </h3>
+        
+        <p className="mt-4 text-base font-medium leading-relaxed text-[var(--muted-foreground)]">
           {getText(product.description, language)}
         </p>
-        <FeatureList items={deliverables} maxItems={4} variant="check" className="mt-5" />
+        
+        <div className="mt-6 border-t-[3px] border-dashed border-[var(--border)] pt-6">
+          <FeatureList items={deliverables} maxItems={4} variant="check" />
+        </div>
       </div>
-      <Link className={buttonVariants("secondary", "sm", "w-fit")} to={product.route}>
-        {getText(productCardCopy.detailCta, language)}
-        <ArrowUpRight size={17} strokeWidth={3} />
+      
+      <Link 
+        className={cn(buttonVariants("secondary", "md", "w-full sm:w-fit"), "mt-4 transition-transform duration-300 active:scale-95")} 
+        to={product.route}
+      >
+        <span className="font-bold">{getText(productCardCopy.detailCta, language)}</span>
+        <ArrowUpRight size={18} strokeWidth={3} className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
       </Link>
     </Card>
   );

@@ -82,17 +82,38 @@ export function ProjectDetailPage() {
             </>
           }
           rightContent={
-            <div className="h-full rounded-[1.5rem] border-[3px] border-[var(--border)] bg-[var(--background)] p-5 shadow-[6px_6px_0_var(--border)]">
-              <div className="rounded-2xl border-[3px] border-[var(--border)] bg-[var(--card)] p-4">
-                <p className="font-heading text-3xl font-extrabold">{project.title}</p>
-                <div className="mt-5">
-                  <StackBadges stack={project.stack} max={5} />
+            <div className="group relative h-full overflow-hidden rounded-[1.5rem] border-[3px] border-black bg-white shadow-[8px_8px_0_black] transition-transform hover:-translate-y-1">
+              {project.screenshotsKey && PROJECT_SCREENSHOTS[project.screenshotsKey][0] ? (
+                <div className="relative aspect-[16/10] w-full overflow-hidden border-b-[3px] border-black">
+                   <img 
+                    src={PROJECT_SCREENSHOTS[project.screenshotsKey][0].src} 
+                    alt={project.title}
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                 </div>
-                <div className="mt-6 grid gap-3">
-                  <div className="h-16 rounded-xl border-2 border-[var(--border)] bg-[var(--primary)]" />
-                  <div className="h-16 rounded-xl border-2 border-[var(--border)] bg-[var(--lime)]" />
-                  <div className="h-16 rounded-xl border-2 border-[var(--border)] bg-[var(--orange)]" />
+              ) : (
+                <div className="aspect-video w-full bg-[var(--card-2)] border-b-[3px] border-black" />
+              )}
+              
+              <div className="p-6">
+                <div className="flex items-center justify-between">
+                  <Badge variant="category">{project.status}</Badge>
+                  <div className="flex gap-1">
+                    <div className="h-2 w-2 rounded-full bg-[var(--primary)]" />
+                    <div className="h-2 w-2 rounded-full bg-[var(--lime)]" />
+                    <div className="h-2 w-2 rounded-full bg-[var(--orange)]" />
+                  </div>
                 </div>
+                <h3 className="mt-4 font-heading text-2xl font-black uppercase tracking-tight">{project.title}</h3>
+                <div className="mt-4">
+                  <StackBadges stack={project.stack} max={4} />
+                </div>
+              </div>
+
+              {/* Decorative Corner Label */}
+              <div className="absolute -right-12 top-6 rotate-45 bg-[var(--lime)] px-12 py-1 text-[10px] font-black uppercase tracking-widest text-black border-y-2 border-black">
+                Featured
               </div>
             </div>
           }

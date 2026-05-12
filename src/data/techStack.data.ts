@@ -162,4 +162,14 @@ export const techStack: TechStackItem[] = [
       en: "Primary code editor for software development.",
     },
   },
+  {
+    name: "Postman",
+    category: "tools",
+    icon: "logos:postman-icon",
+    color: "#FF6C37",
+    description: {
+      id: "Alat untuk testing dan dokumentasi API.",
+      en: "Tool for API testing and documentation.",
+    },
+  },
 ];

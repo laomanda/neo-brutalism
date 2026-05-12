@@ -62,19 +62,43 @@ export function ProductDetailPage() {
           ]}
           actions={
             <>
+              <Link className={buttonVariants("primary", "md")} to={`/checkout/${product.slug}`}>
+                {language === "id" ? "Beli Sekarang" : "Buy Now"} <ArrowUpRight size={18} strokeWidth={3} />
+              </Link>
               <a className={buttonVariants("secondary", "md")} href={SITE.whatsapp} rel="noopener noreferrer" target="_blank">
                 {getText(productCopy.consultWhatsapp, language)} <MessageCircle size={18} strokeWidth={3} />
               </a>
-              <Link className={buttonVariants("accent", "md")} to="/#contact">
-                {getText(productCopy.contact, language)} <ArrowUpRight size={18} strokeWidth={3} />
-              </Link>
             </>
           }
           rightContent={
-            <div className="h-full rounded-[1.5rem] border-[3px] border-[var(--border)] bg-[var(--background)] p-5 shadow-[6px_6px_0_var(--border)]">
-              <Badge variant="category">{getText(productCopy.secondaryOffering, language)}</Badge>
-              <p className="mt-5 font-heading text-4xl font-extrabold">{getText(product.title, language)}</p>
-              <FeatureList items={deliverables} maxItems={4} className="mt-6" />
+            <div className="group relative h-full overflow-hidden rounded-[1.5rem] border-[3px] border-black bg-[var(--card-2)] p-8 shadow-[8px_8px_0_black] transition-transform hover:-translate-y-1">
+              <div className="flex items-center justify-between">
+                <Badge variant="category">{getText(productCopy.secondaryOffering, language)}</Badge>
+                <div className="h-3 w-3 rounded-full bg-red-500 animate-pulse shadow-[0_0_8px_red]" />
+              </div>
+              
+              <p className="mt-6 font-heading text-4xl font-black uppercase leading-tight">{getText(product.title, language)}</p>
+              
+              <div className="mt-8 space-y-4">
+                <p className="text-xs font-black uppercase tracking-widest text-black/40">Includes:</p>
+                <FeatureList items={deliverables} maxItems={4} />
+              </div>
+
+              <div className="mt-10 flex items-center gap-4">
+                <div className="flex -space-x-3">
+                  {[1, 2, 3].map((i) => (
+                    <div key={i} className="h-10 w-10 rounded-full border-2 border-black bg-[var(--background)] flex items-center justify-center font-bold text-xs shadow-[2px_2px_0_black]">
+                      JP
+                    </div>
+                  ))}
+                </div>
+                <p className="text-[10px] font-bold uppercase leading-tight opacity-60">Trusted by<br/>Developers</p>
+              </div>
+
+              {/* Price Tag Mockup */}
+              <div className="absolute -bottom-2 -right-2 rotate-[-5deg] rounded-xl border-[3px] border-black bg-[var(--lime)] px-6 py-3 font-heading text-2xl font-black shadow-[4px_4px_0_black]">
+                PREMIUM
+              </div>
             </div>
           }
         />
@@ -117,14 +141,14 @@ export function ProductDetailPage() {
 
         <DetailSection title={getText(productCopy.ctaTitle, language)} description={getText(productCopy.ctaDescription, language)}>
           <Card accent={product.accent} className="flex flex-col gap-4 sm:flex-row sm:flex-wrap">
+            <Link className={buttonVariants("primary", "md")} to={`/checkout/${product.slug}`}>
+              {language === "id" ? "Beli Sekarang" : "Buy Now"} <ArrowUpRight size={18} strokeWidth={3} />
+            </Link>
             <a className={buttonVariants("secondary", "md")} href={SITE.whatsapp} rel="noopener noreferrer" target="_blank">
               {getText(productCopy.consultWhatsapp, language)} <MessageCircle size={18} strokeWidth={3} />
             </a>
             <Link className={buttonVariants("outline", "md")} to="/#products">
               {getText(productCopy.backToProducts, language)} <ArrowUpRight size={18} strokeWidth={3} />
-            </Link>
-            <Link className={buttonVariants("accent", "md")} to="/#contact">
-              {getText(productCopy.contact, language)} <ArrowUpRight size={18} strokeWidth={3} />
             </Link>
           </Card>
         </DetailSection>

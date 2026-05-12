@@ -11,7 +11,17 @@ type SocialLinkCardProps = {
   className?: string;
 };
 
+const brandConfig: Record<string, { bg: string; text: string }> = {
+  Gmail: { bg: "bg-[#EA4335]", text: "text-white" },
+  WhatsApp: { bg: "bg-[#22C55E]", text: "text-white" },
+  GitHub: { bg: "bg-[#181717]", text: "text-white" },
+  LinkedIn: { bg: "bg-[#0A66C2]", text: "text-white" },
+  Instagram: { bg: "bg-[#E1306C]", text: "text-white" },
+};
+
 export function SocialLinkCard({ item, language, className }: SocialLinkCardProps) {
+  const config = brandConfig[item.label] || { bg: "bg-[var(--lime)]", text: "text-[#111111]" };
+
   return (
     <a
       aria-label={item.label}
@@ -23,7 +33,11 @@ export function SocialLinkCard({ item, language, className }: SocialLinkCardProp
       rel={item.external ? "noopener noreferrer" : undefined}
       target={item.external ? "_blank" : undefined}
     >
-      <span className="grid h-12 w-12 place-items-center rounded-xl border-[3px] border-[var(--border)] bg-[var(--lime)] text-[#111111] shadow-[4px_4px_0_var(--border)]">
+      <span className={cn(
+        "grid h-12 w-12 place-items-center rounded-xl border-[3px] border-[var(--border)] shadow-[4px_4px_0_var(--border)]",
+        config.bg,
+        config.text
+      )}>
         <Icon icon={item.icon} className="h-6 w-6" aria-hidden="true" />
       </span>
       <span className="min-w-0">

@@ -229,10 +229,6 @@ export const homepageCopy = {
       id: "Selain portfolio project, saya juga menyiapkan beberapa produk dan jasa digital yang bisa membantu kebutuhan website, frontend, company profile, atau referensi source code.",
       en: "Beyond portfolio projects, I also provide digital products and services for website, frontend, company profile, or source code reference needs.",
     },
-    notice: {
-      id: "Produk & jasa ini adalah penawaran tambahan, bukan fokus utama portfolio.",
-      en: "These products and services are secondary offerings, not the main focus of this portfolio.",
-    },
     detailCta: { id: "Lihat Detail Paket", en: "View Package Detail" },
   },
   philosophy: {
