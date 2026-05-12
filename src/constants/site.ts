@@ -1,21 +1,21 @@
 export const SITE_CONFIG = {
-  siteName: "Jakkob Panjaitan — Frontend Developer",
+  siteName: "Jakkob Panjaitan | Frontend Developer",
   ownerName: "Jakkob Panjaitan",
   role: {
     id: "Frontend Developer",
     en: "Frontend Developer",
   },
   secondaryRole: {
-    id: "Fullstack-capable Developer",
-    en: "Fullstack-capable Developer",
+    id: "Fullstack-capable",
+    en: "Fullstack-capable",
   },
   positioning: {
-    id: "Frontend Developer first, Fullstack-capable second.",
-    en: "Frontend Developer first, Fullstack-capable second.",
+    id: "Frontend Developer & Fullstack-capable",
+    en: "Frontend Developer & Fullstack-capable",
   },
   description: {
-    id: "Portfolio Jakkob Panjaitan, Frontend Developer dan Fullstack-capable developer yang membangun website modern, interaktif, dan sistem web berbasis React, Laravel, Tailwind CSS, TypeScript, dan MySQL.",
-    en: "Portfolio of Jakkob Panjaitan, a Frontend Developer and fullstack-capable developer building modern, interactive websites and web systems using React, Laravel, Tailwind CSS, TypeScript, and MySQL.",
+    id: "Membangun sistem web modern & interaktif dengan React, Laravel, dan TypeScript.",
+    en: "Building modern & interactive web systems with React, Laravel, and TypeScript.",
   },
   keywords: [
     "Jakkob Panjaitan",
