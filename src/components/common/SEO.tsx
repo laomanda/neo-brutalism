@@ -88,6 +88,9 @@ export function SEO({
     
     const fullImageUrl = image.startsWith("http") ? image : `${SITE_CONFIG.siteUrl}${image}`;
     updateMetaTag("og:image", fullImageUrl, true);
+    updateMetaTag("og:image:width", "1200", true);
+    updateMetaTag("og:image:height", "630", true);
+    updateMetaTag("og:image:type", "image/png", true);
 
     // 6. Twitter
     updateMetaTag("twitter:card", "summary_large_image");
