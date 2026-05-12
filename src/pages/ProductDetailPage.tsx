@@ -1,4 +1,4 @@
-import { ArrowUpRight, MessageCircle } from "lucide-react";
+import { ArrowUpRight, MessageCircle, CheckCircle2, Sparkles } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 import { BackLink } from "../components/common/BackLink";
 import { Container } from "../components/common/Container";
@@ -55,16 +55,8 @@ export function ProductDetailPage() {
           title={getText(product.title, language)}
           description={getText(product.description, language)}
           accent={product.accent}
-          metaItems={[
-            { label: getText(productCopy.secondaryOffering, language) },
-            { label: getText(productCopy.digitalProductService, language) },
-            { label: getText(productCopy.portfolioAddon, language) },
-          ]}
           actions={
             <>
-              <Link className={buttonVariants("primary", "md")} to={`/checkout/${product.slug}`}>
-                {language === "id" ? "Beli Sekarang" : "Buy Now"} <ArrowUpRight size={18} strokeWidth={3} />
-              </Link>
               <a className={buttonVariants("secondary", "md")} href={SITE.whatsapp} rel="noopener noreferrer" target="_blank">
                 {getText(productCopy.consultWhatsapp, language)} <MessageCircle size={18} strokeWidth={3} />
               </a>
@@ -72,8 +64,7 @@ export function ProductDetailPage() {
           }
           rightContent={
             <div className="group relative h-full overflow-hidden rounded-[1.5rem] border-[3px] border-black bg-[var(--card-2)] p-8 shadow-[8px_8px_0_black] transition-transform hover:-translate-y-1">
-              <div className="flex items-center justify-between">
-                <Badge variant="category">{getText(productCopy.secondaryOffering, language)}</Badge>
+              <div className="flex items-center justify-end">
                 <div className="h-3 w-3 rounded-full bg-red-500 animate-pulse shadow-[0_0_8px_red]" />
               </div>
               
@@ -115,21 +106,34 @@ export function ProductDetailPage() {
         </DetailSection>
 
         <DetailSection title={getText(productCopy.whoItIsFor, language)}>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {targetUsers.map((target) => (
-              <Card key={target} accent={product.accent} className="p-4" interactive>
-                <Badge variant="tech">{target}</Badge>
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {targetUsers.map((target, idx) => (
+              <Card key={target} accent={product.accent} className="flex items-center gap-4 p-5" interactive>
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-black bg-white shadow-[2px_2px_0_black]">
+                  <CheckCircle2 size={18} className="text-[var(--primary)]" />
+                </div>
+                <p className="text-sm font-bold leading-tight">{target}</p>
               </Card>
             ))}
           </div>
         </DetailSection>
 
         <DetailSection title={getText(productCopy.whatYouGet, language)}>
-          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
             {deliverables.map((item, index) => (
-              <Card key={item} accent={product.accent} className="p-4" interactive>
-                <p className="font-heading text-sm font-extrabold text-[var(--foreground)]/60">0{index + 1}</p>
-                <h3 className="mt-2 text-xl font-extrabold">{item}</h3>
+              <Card key={item} accent={product.accent} className="group/item relative overflow-hidden p-6" interactive>
+                <div className="flex items-start justify-between">
+                  <div className="rounded-xl bg-black/5 p-2 transition-colors group-hover/item:bg-white/20">
+                    <Sparkles size={20} className="text-[var(--primary)]" />
+                  </div>
+                  <span className="font-heading text-2xl font-black opacity-10 transition-opacity group-hover/item:opacity-30">
+                    0{index + 1}
+                  </span>
+                </div>
+                <h3 className="mt-6 text-xl font-black leading-tight tracking-tight">{item}</h3>
+                
+                {/* Decorative background element */}
+                <div className="absolute -bottom-6 -right-6 h-20 w-20 rounded-full bg-black/5 blur-2xl transition-transform group-hover/item:scale-150" />
               </Card>
             ))}
           </div>
@@ -141,9 +145,6 @@ export function ProductDetailPage() {
 
         <DetailSection title={getText(productCopy.ctaTitle, language)} description={getText(productCopy.ctaDescription, language)}>
           <Card accent={product.accent} className="flex flex-col gap-4 sm:flex-row sm:flex-wrap">
-            <Link className={buttonVariants("primary", "md")} to={`/checkout/${product.slug}`}>
-              {language === "id" ? "Beli Sekarang" : "Buy Now"} <ArrowUpRight size={18} strokeWidth={3} />
-            </Link>
             <a className={buttonVariants("secondary", "md")} href={SITE.whatsapp} rel="noopener noreferrer" target="_blank">
               {getText(productCopy.consultWhatsapp, language)} <MessageCircle size={18} strokeWidth={3} />
             </a>

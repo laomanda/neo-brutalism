@@ -20,9 +20,15 @@ export function DetailSection({ eyebrow, title, description, children, className
             <Badge variant="category">{eyebrow}</Badge>
           </div>
         ) : null}
-        <h2 className="text-balance-custom text-3xl font-extrabold leading-tight sm:text-4xl">{title}</h2>
+        <h2 className="text-balance-custom font-heading text-4xl font-black uppercase tracking-tighter sm:text-6xl">
+          <span className="inline-block bg-[var(--primary)] px-4 py-1 text-black shadow-[6px_6px_0_black] border-[3px] border-black -rotate-1">
+            {title}
+          </span>
+        </h2>
         {description ? (
-          <p className="mt-3 font-semibold leading-7 text-[var(--foreground)]/80">{description}</p>
+          <div className="mt-8 border-l-[4px] border-black pl-6">
+            <p className="text-lg font-bold leading-relaxed text-[var(--foreground)]/80 italic">{description}</p>
+          </div>
         ) : null}
       </div>
       {children}

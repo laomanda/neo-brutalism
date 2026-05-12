@@ -1,5 +1,6 @@
-import { ArrowUpRight, ExternalLink, Mail } from "lucide-react";
+import { ArrowUpRight, ExternalLink, Mail, User, Layers, Activity, Layout, Target, ShieldCheck, Zap, Sparkles } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
+import { cn } from "../utils/cn";
 import { BackLink } from "../components/common/BackLink";
 import { Container } from "../components/common/Container";
 import { DetailHero } from "../components/common/DetailHero";
@@ -82,15 +83,14 @@ export function ProjectDetailPage() {
             </>
           }
           rightContent={
-            <div className="group relative h-full overflow-hidden rounded-[1.5rem] border-[3px] border-black bg-white shadow-[8px_8px_0_black] transition-transform hover:-translate-y-1">
+            <div className="group relative h-full overflow-hidden rounded-[1.5rem] border-[3px] border-black bg-white shadow-[8px_8px_0_black]">
               {project.screenshotsKey && PROJECT_SCREENSHOTS[project.screenshotsKey][0] ? (
                 <div className="relative aspect-[16/10] w-full overflow-hidden border-b-[3px] border-black">
                    <img 
                     src={PROJECT_SCREENSHOTS[project.screenshotsKey][0].src} 
                     alt={project.title}
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    className="h-full w-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                 </div>
               ) : (
                 <div className="aspect-video w-full bg-[var(--card-2)] border-b-[3px] border-black" />
@@ -120,16 +120,16 @@ export function ProjectDetailPage() {
         />
 
         <DetailSection title={getText(projectCopy.overview, language)}>
-          <Card>
-            <p className="font-semibold leading-7 text-[var(--foreground)]/80">{getText(overview, language)}</p>
+          <Card className="p-8 md:p-12">
+            <p className="text-xl font-bold leading-relaxed text-[var(--foreground)] md:text-2xl">{getText(overview, language)}</p>
           </Card>
-          <div className="mt-5">
+          <div className="mt-8">
             <InfoGrid
               items={[
-                { label: getText(projectCopy.meta.role, language), value: project.role },
-                { label: getText(projectCopy.meta.mainStack, language), value: project.stack.slice(0, 2).join(", ") },
-                { label: getText(projectCopy.meta.status, language), value: project.status },
-                { label: getText(projectCopy.meta.route, language), value: project.route },
+                { label: getText(projectCopy.meta.role, language), value: project.role, icon: User },
+                { label: getText(projectCopy.meta.mainStack, language), value: project.stack.slice(0, 3).join(", "), icon: Layers },
+                { label: getText(projectCopy.meta.status, language), value: project.status, icon: Activity },
+                { label: getText(projectCopy.meta.type, language), value: getText(project.subtitle, language), icon: Layout },
               ]}
             />
           </div>
@@ -151,11 +151,14 @@ export function ProjectDetailPage() {
         </DetailSection>
 
         <DetailSection title={getText(projectCopy.coreFeatures, language)}>
-          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {features.map((feature, index) => (
-              <Card key={feature} accent={project.accent} className="p-4" interactive>
-                <p className="font-heading text-sm font-extrabold text-[var(--foreground)]/60">0{index + 1}</p>
-                <h3 className="mt-2 text-xl font-extrabold">{feature}</h3>
+              <Card key={feature} accent={project.accent} className="group/feature relative overflow-hidden p-8" interactive>
+                <div className="relative z-10">
+                  <span className="font-heading text-4xl font-black opacity-20">0{index + 1}</span>
+                  <h3 className="mt-4 text-2xl font-black leading-tight uppercase">{feature}</h3>
+                </div>
+                <div className="absolute -bottom-4 -right-4 h-24 w-24 rounded-full bg-black/5 blur-2xl transition-transform group-hover/feature:scale-150" />
               </Card>
             ))}
           </div>
@@ -176,35 +179,76 @@ export function ProjectDetailPage() {
         </DetailSection>
 
         <DetailSection title={getText(projectCopy.challenges, language)}>
-          <Card accent="orange">
-            <FeatureList items={challenges} variant="bullet" />
-          </Card>
-        </DetailSection>
-
-        <DetailSection title={getText(projectCopy.results, language)}>
-          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-            {results.map((result, index) => (
-              <Card key={result} accent={index % 2 === 0 ? "lime" : project.accent} interactive>
-                <p className="font-heading text-4xl font-extrabold text-[var(--primary)]">0{index + 1}</p>
-                <p className="mt-4 font-bold leading-6">{result}</p>
+          <div className="grid gap-6 md:grid-cols-2">
+            {challenges.map((challenge, index) => (
+              <Card key={index} accent="orange" className="group/challenge relative overflow-hidden p-8" interactive>
+                <div className="flex items-start gap-5">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border-[3px] border-black bg-white shadow-[3px_3px_0_black] transition-transform group-hover/challenge:-rotate-12">
+                    <Activity size={24} strokeWidth={3} className="text-orange-500" />
+                  </div>
+                  <div>
+                    <h3 className="font-heading text-xl font-black uppercase leading-tight tracking-tight">
+                      {language === "id" ? `Tantangan 0${index + 1}` : `Challenge 0${index + 1}`}
+                    </h3>
+                    <p className="mt-2 text-lg font-bold leading-relaxed opacity-80">{challenge}</p>
+                  </div>
+                </div>
+                <div className="absolute -bottom-4 -right-4 h-20 w-20 rounded-full bg-black/5 blur-2xl" />
               </Card>
             ))}
           </div>
         </DetailSection>
 
+        <DetailSection title={getText(projectCopy.results, language)}>
+          <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
+            {results.map((result, index) => {
+              const accentData: any[] = [
+                { color: "lime", bg: "bg-lime-400", text: "text-black", num: "text-lime-600" },
+                { color: "blue", bg: "bg-blue-500", text: "text-white", num: "text-blue-600" },
+                { color: "orange", bg: "bg-orange-500", text: "text-white", num: "text-orange-600" },
+                { color: "purple", bg: "bg-purple-500", text: "text-white", num: "text-purple-600" },
+              ];
+              const currentAccent = accentData[index % accentData.length];
+              const icons = [ArrowUpRight, Target, ShieldCheck, Zap];
+              const Icon = icons[index % icons.length] || Sparkles;
+              
+              return (
+                <Card key={result} accent={currentAccent.color} className="group/result flex flex-col p-8" interactive>
+                  <div className={cn(
+                    "mb-8 flex h-16 w-16 items-center justify-center rounded-2xl border-[3px] border-black shadow-[4px_4px_0_black] transition-all group-hover/result:-translate-y-1 group-hover/result:-rotate-6 group-hover/result:shadow-[6px_6px_0_black]",
+                    currentAccent.bg,
+                    currentAccent.text
+                  )}>
+                    <Icon size={32} strokeWidth={3} />
+                  </div>
+                  <div className="flex-1">
+                     <p className={cn("text-4xl font-black opacity-50", currentAccent.num)}>0{index + 1}</p>
+                     <p className="mt-2 text-lg font-black leading-tight uppercase tracking-tight">{result}</p>
+                  </div>
+                </Card>
+              );
+            })}
+          </div>
+        </DetailSection>
+
         <DetailSection title={getText(projectCopy.ctaTitle, language)}>
-          <Card accent={project.accent} className="flex flex-col gap-4 sm:flex-row sm:flex-wrap">
-            <Link className={buttonVariants("outline", "md")} to="/#projects">
-              {getText(projectCopy.backToProjects, language)} <ArrowUpRight size={18} strokeWidth={3} />
-            </Link>
-            <Link className={buttonVariants("accent", "md")} to="/#contact">
-              {getText(projectCopy.contact, language)} <Mail size={18} strokeWidth={3} />
-            </Link>
-            {project.github ? (
-              <a className={buttonVariants("primary", "md")} href={project.github} rel="noopener noreferrer" target="_blank">
-                {getText(projectCopy.viewGithub, language)} <ExternalLink size={18} strokeWidth={3} />
-              </a>
-            ) : null}
+          <Card accent={project.accent} className="flex flex-col items-center justify-between gap-8 p-10 text-center md:flex-row md:text-left">
+            <div>
+               <h3 className="text-3xl font-black uppercase tracking-tighter md:text-4xl">
+                 {language === "id" ? "Tertarik dengan project ini?" : "Interested in this project?"}
+               </h3>
+               <p className="mt-2 text-lg font-bold opacity-70">
+                 {language === "id" ? "Mari diskusikan bagaimana saya bisa membantu bisnis Anda." : "Let's discuss how I can help your business."}
+               </p>
+            </div>
+            <div className="flex flex-wrap justify-center gap-4 md:justify-start">
+              <Link className={buttonVariants("primary", "lg")} to="/#contact">
+                {getText(projectCopy.contact, language)} <Mail size={20} strokeWidth={3} />
+              </Link>
+              <Link className={buttonVariants("secondary", "lg")} to="/#projects">
+                {getText(projectCopy.backToProjects, language)} <ArrowUpRight size={20} strokeWidth={3} />
+              </Link>
+            </div>
           </Card>
         </DetailSection>
       </Container>
