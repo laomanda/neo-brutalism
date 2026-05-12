@@ -1,4 +1,4 @@
-import { ArrowDown, ArrowUpRight, Download } from "lucide-react";
+import { ArrowDown, Download } from "lucide-react";
 import {
   motion,
   useMotionValue,

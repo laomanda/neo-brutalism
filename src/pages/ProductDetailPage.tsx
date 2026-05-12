@@ -6,7 +6,6 @@ import { DetailHero } from "../components/common/DetailHero";
 import { DetailSection } from "../components/common/DetailSection";
 import { FeatureList } from "../components/common/FeatureList";
 import { ProcessSteps } from "../components/common/ProcessSteps";
-import { Badge } from "../components/ui/Badge";
 import { buttonVariants } from "../components/ui/buttonVariants";
 import { Card } from "../components/ui/Card";
 import { SITE } from "../constants/site";
@@ -107,7 +106,7 @@ export function ProductDetailPage() {
 
         <DetailSection title={getText(productCopy.whoItIsFor, language)}>
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {targetUsers.map((target, idx) => (
+            {targetUsers.map((target) => (
               <Card key={target} accent={product.accent} className="flex items-center gap-4 p-5" interactive>
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-black bg-white shadow-[2px_2px_0_black]">
                   <CheckCircle2 size={18} className="text-[var(--primary)]" />
