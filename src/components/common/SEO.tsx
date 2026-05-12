@@ -47,6 +47,7 @@ function updateStructuredData(schemas: Record<string, unknown>[]) {
   script.textContent = JSON.stringify(data);
 }
 
+
 export function SEO({
   title = SITE_CONFIG.defaultTitle,
   description = SITE_CONFIG.description.id,
@@ -106,3 +107,4 @@ export function SEO({
 
   return null;
 }
+
