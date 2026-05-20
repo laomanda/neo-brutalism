@@ -12,10 +12,10 @@ export default defineConfig({
         manualChunks(id) {
           if (id.includes("node_modules")) {
             if (
-              id.includes("react") ||
-              id.includes("react-dom") ||
+              id.includes("/react/") ||
+              id.includes("/react-dom/") ||
               id.includes("react-router-dom") ||
-              id.includes("scheduler")
+              id.includes("/scheduler/")
             ) {
               return "react-vendor";
             }
@@ -25,6 +25,9 @@ export default defineConfig({
               id.includes("lenis")
             ) {
               return "animation-vendor";
+            }
+            if (id.includes("@iconify")) {
+              return "iconify-vendor";
             }
           }
         },

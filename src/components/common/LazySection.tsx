@@ -49,6 +49,7 @@ export function LazySection({ children, height = "400px", className, id }: LazyS
       className={className}
       style={{
         minHeight: isIntersecting ? "auto" : height,
+        scrollMarginTop: "7rem",
       }}
     >
       {isIntersecting ? children : null}

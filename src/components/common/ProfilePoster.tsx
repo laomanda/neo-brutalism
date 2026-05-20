@@ -1,4 +1,4 @@
-import { Icon } from "@iconify/react";
+import { LayoutDashboard } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import { IMAGE_ASSETS } from "../../data/assets.data";
 import { homepageCopy } from "../../data/homepageCopy.data";
@@ -99,7 +99,7 @@ export function ProfilePoster({ language, className }: ProfilePosterProps) {
 
         <div className="flex items-center gap-2 border-t-[3px] border-[var(--border)] bg-[var(--poster-strip)] px-3 py-2.5 sm:px-4">
           <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full border-2 border-[var(--border)] bg-[var(--lime)] text-black">
-            <Icon icon="lucide:layout-dashboard" className="h-3.5 w-3.5" aria-hidden="true" />
+            <LayoutDashboard className="h-3.5 w-3.5" aria-hidden="true" />
           </span>
           <p className="min-w-0 truncate font-mono text-[9px] font-bold leading-4 tracking-[0.08em] text-[var(--foreground)]/90 sm:text-[10px]">
             {posterStripText}

@@ -1,6 +1,5 @@
-import { Icon } from "@iconify/react";
-import { Menu, X } from "lucide-react";
-import { useState, useEffect } from "react";
+import { House, UserRound, Layers3, BriefcaseBusiness, Package, Mail, Menu, X } from "lucide-react";
+import { useState, useEffect, type ReactNode } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { navigationItems } from "../../data/navigation.data";
 import { useLanguage } from "../../hooks/useLanguage";
@@ -9,13 +8,13 @@ import { getText } from "../../utils/getText";
 import { LanguageToggle } from "../common/LanguageToggle";
 import { uiCopy } from "../../data/uiCopy.data";
 
-const navIcons: Record<string, string> = {
-  "/": "lucide:house",
-  "/#about": "lucide:user-round",
-  "/#stack": "lucide:layers-3",
-  "/#projects": "lucide:briefcase-business",
-  "/#products": "lucide:package",
-  "/#contact": "lucide:mail"
+const navIcons: Record<string, ReactNode> = {
+  "/": <House className="h-4 w-4" />,
+  "/#about": <UserRound className="h-4 w-4" />,
+  "/#stack": <Layers3 className="h-4 w-4" />,
+  "/#projects": <BriefcaseBusiness className="h-4 w-4" />,
+  "/#products": <Package className="h-4 w-4" />,
+  "/#contact": <Mail className="h-4 w-4" />,
 };
 
 export function Navbar() {
@@ -115,10 +114,9 @@ export function Navbar() {
                 onClick={() => handleNavigate(item.href)}
               >
                 {icon && (
-                  <Icon 
-                    icon={icon} 
-                    className={cn("h-4 w-4 transition-all duration-200", active ? "opacity-100" : "opacity-75 group-hover:scale-110 group-hover:opacity-100")}
-                  />
+                  <span className={cn("transition-all duration-200", active ? "opacity-100" : "opacity-75 group-hover:scale-110 group-hover:opacity-100")}>
+                    {icon}
+                  </span>
                 )}
                 <span>{getText(item.label, language)}</span>
               </button>
@@ -179,7 +177,7 @@ export function Navbar() {
                   type="button"
                   onClick={() => handleNavigate(item.href)}
                 >
-                  {icon && <Icon icon={icon} className={cn("h-4 w-4", active ? "opacity-100" : "opacity-75 group-hover:opacity-100")} />}
+                  {icon && <span className={cn(active ? "opacity-100" : "opacity-75 group-hover:opacity-100")}>{icon}</span>}
                   {getText(item.label, language)}
                 </button>
               );

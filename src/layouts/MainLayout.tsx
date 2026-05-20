@@ -1,6 +1,6 @@
-import { useEffect } from "react";
+import { useEffect, lazy, Suspense } from "react";
 import { Outlet, useLocation } from "react-router-dom";
-import { Footer } from "../components/layout/Footer";
+const Footer = lazy(() => import("../components/layout/Footer").then(m => ({ default: m.Footer })));
 import { Navbar } from "../components/layout/Navbar";
 import { PageTransition } from "../components/common/PageTransition";
 import { useLenis } from "../hooks/useLenis";
@@ -43,7 +43,9 @@ export function MainLayout() {
             <Outlet />
           </PageTransition>
         </main>
-        <Footer />
+        <Suspense fallback={null}>
+          <Footer />
+        </Suspense>
       </div>
     </div>
   );
