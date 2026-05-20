@@ -11,22 +11,23 @@ export default defineConfig({
       output: {
         manualChunks(id) {
           if (id.includes("node_modules")) {
+            const normalizedId = id.replace(/\\/g, "/");
             if (
-              id.includes("/react/") ||
-              id.includes("/react-dom/") ||
-              id.includes("react-router-dom") ||
-              id.includes("/scheduler/")
+              normalizedId.includes("/react/") ||
+              normalizedId.includes("/react-dom/") ||
+              normalizedId.includes("/react-router-dom/") ||
+              normalizedId.includes("/scheduler/")
             ) {
               return "react-vendor";
             }
             if (
-              id.includes("motion") ||
-              id.includes("gsap") ||
-              id.includes("lenis")
+              normalizedId.includes("motion") ||
+              normalizedId.includes("gsap") ||
+              normalizedId.includes("lenis")
             ) {
               return "animation-vendor";
             }
-            if (id.includes("@iconify")) {
+            if (normalizedId.includes("@iconify")) {
               return "iconify-vendor";
             }
           }

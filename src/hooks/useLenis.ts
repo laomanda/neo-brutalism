@@ -1,4 +1,9 @@
 import { useEffect } from "react";
+import Lenis from "lenis";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export function useLenis() {
   useEffect(() => {
@@ -10,41 +15,27 @@ export function useLenis() {
       return;
     }
 
-    // Dynamically import Lenis + GSAP only when needed (desktop only)
-    // This prevents ~80KB of JS from being loaded on mobile or when reduced motion is preferred
-    let cleanup: (() => void) | undefined;
+    const lenis = new Lenis({
+      duration: 0.9,
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      touchMultiplier: 1.15,
+    });
 
-    import("lenis").then(({ default: Lenis }) =>
-      import("gsap").then(({ gsap }) =>
-        import("gsap/ScrollTrigger").then(({ ScrollTrigger }) => {
-          gsap.registerPlugin(ScrollTrigger);
+    lenis.on('scroll', ScrollTrigger.update);
 
-          const lenis = new Lenis({
-            duration: 0.9,
-            smoothWheel: true,
-            wheelMultiplier: 1,
-            touchMultiplier: 1.15,
-          });
+    let frameId = 0;
 
-          lenis.on("scroll", ScrollTrigger.update);
+    const raf = (time: number) => {
+      lenis.raf(time);
+      frameId = requestAnimationFrame(raf);
+    };
 
-          let frameId = 0;
-          const raf = (time: number) => {
-            lenis.raf(time);
-            frameId = requestAnimationFrame(raf);
-          };
-          frameId = requestAnimationFrame(raf);
-
-          cleanup = () => {
-            cancelAnimationFrame(frameId);
-            lenis.destroy();
-          };
-        })
-      )
-    );
+    frameId = requestAnimationFrame(raf);
 
     return () => {
-      cleanup?.();
+      cancelAnimationFrame(frameId);
+      lenis.destroy();
     };
   }, []);
 }
