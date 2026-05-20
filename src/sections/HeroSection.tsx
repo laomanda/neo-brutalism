@@ -7,12 +7,13 @@ import {
   useSpring,
   useTransform,
 } from "motion/react";
-import { useRef, type ComponentProps, type MouseEventHandler, type Ref } from "react";
+import { useRef, type ComponentProps, type MouseEventHandler, type Ref, lazy, Suspense } from "react";
 import { Link } from "react-router-dom";
 import { BrutalMarquee } from "../components/common/BrutalMarquee";
 import { Container } from "../components/common/Container";
-import HeroBackground3D from "../components/common/HeroBackground3D";
 import { ProfilePoster } from "../components/common/ProfilePoster";
+
+const HeroBackground3D = lazy(() => import("../components/common/HeroBackground3D"));
 import { Badge } from "../components/ui/Badge";
 import { buttonVariants } from "../components/ui/buttonVariants";
 import { SITE_CONFIG } from "../constants/site";
@@ -69,7 +70,9 @@ export function HeroStageContent({
         className="pointer-events-none absolute inset-0 z-0 overflow-hidden will-change-transform"
         style={backgroundStyle}
       >
-        <HeroBackground3D />
+        <Suspense fallback={null}>
+          <HeroBackground3D />
+        </Suspense>
       </motion.div>
 
       <motion.div
