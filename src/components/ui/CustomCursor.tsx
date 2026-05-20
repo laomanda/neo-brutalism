@@ -22,21 +22,6 @@ export function CustomCursor() {
     mouseX.set(e.clientX);
     mouseY.set(e.clientY);
     if (!isVisible) setIsVisible(true);
-
-    // Detect cursor type from data-cursor attributes
-    const target = e.target as HTMLElement;
-    const interactiveElement = target.closest("[data-cursor], a, button, [role='button']");
-    
-    if (interactiveElement) {
-      const type = interactiveElement.getAttribute("data-cursor") as CursorState;
-      if (type) {
-        setCursorState(type);
-      } else {
-        setCursorState("open"); // Default for links/buttons
-      }
-    } else {
-      setCursorState("default");
-    }
   }, [mouseX, mouseY, isVisible]);
 
   const onMouseDown = () => setIsClicking(true);
@@ -45,7 +30,25 @@ export function CustomCursor() {
   const onMouseEnter = () => setIsVisible(true);
 
   useEffect(() => {
+    const onPointerOver = (e: PointerEvent) => {
+      const target = e.target as HTMLElement;
+      if (!target) return;
+      const interactiveElement = target.closest("[data-cursor], a, button, [role='button']");
+      
+      if (interactiveElement) {
+        const type = interactiveElement.getAttribute("data-cursor") as CursorState;
+        if (type) {
+          setCursorState(type);
+        } else {
+          setCursorState("open");
+        }
+      } else {
+        setCursorState("default");
+      }
+    };
+
     window.addEventListener("pointermove", onMouseMove);
+    window.addEventListener("pointerover", onPointerOver);
     window.addEventListener("mousedown", onMouseDown);
     window.addEventListener("mouseup", onMouseUp);
     document.body.addEventListener("mouseleave", onMouseLeave);
@@ -53,6 +56,7 @@ export function CustomCursor() {
 
     return () => {
       window.removeEventListener("pointermove", onMouseMove);
+      window.removeEventListener("pointerover", onPointerOver);
       window.removeEventListener("mousedown", onMouseDown);
       window.removeEventListener("mouseup", onMouseUp);
       document.body.removeEventListener("mouseleave", onMouseLeave);

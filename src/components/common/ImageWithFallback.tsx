@@ -49,8 +49,8 @@ export const ImageWithFallback = ({
       <img
         src={src}
         alt={alt}
-        width={width}
-        height={height}
+        width={width || 800}
+        height={height || 500}
         loading={loading}
         fetchPriority={fetchPriority}
         decoding="async"

@@ -10,6 +10,7 @@ import { StatsSection } from "../sections/StatsSection";
 import { TechStackSection } from "../sections/TechStackSection";
 
 import { SEO } from "../components/common/SEO";
+import { LazySection } from "../components/common/LazySection";
 
 export function HomePage() {
   return (
@@ -18,13 +19,34 @@ export function HomePage() {
       <HeroSection />
       <AboutSection />
       <StatsSection />
-      <TechStackSection />
-      <FeaturedProjectSection />
-      <CaseStudySection />
-      <ProjectGallerySection />
-      <ExperienceTimelineSection />
-      <ProductsServicesSection />
-      <ContactSection />
+      
+      <LazySection id="stack" height="600px">
+        <TechStackSection />
+      </LazySection>
+      
+      <LazySection id="featured" height="800px">
+        <FeaturedProjectSection />
+      </LazySection>
+      
+      <LazySection id="case-study" height="800px">
+        <CaseStudySection />
+      </LazySection>
+      
+      <LazySection id="projects" height="800px">
+        <ProjectGallerySection />
+      </LazySection>
+      
+      <LazySection id="experience" height="900px">
+        <ExperienceTimelineSection />
+      </LazySection>
+      
+      <LazySection id="products" height="800px">
+        <ProductsServicesSection />
+      </LazySection>
+      
+      <LazySection id="contact" height="600px">
+        <ContactSection />
+      </LazySection>
     </>
   );
 }

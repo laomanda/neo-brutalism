@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { Icon } from "@iconify/react";
 import { motion } from "motion/react";
 import { Container } from "../components/common/Container";
@@ -11,6 +12,21 @@ const stackCopy = homepageCopy.techStack;
 
 export function TechStackSection() {
   const { language } = useLanguage();
+  const [screenSize, setScreenSize] = useState({ baseWidth: 1600, radius: 650, itemSize: 130 });
+
+  useEffect(() => {
+    const handleResize = () => {
+      const isMobile = window.innerWidth < 1024;
+      setScreenSize({
+        baseWidth: isMobile ? 900 : 1600,
+        radius: isMobile ? 380 : 650,
+        itemSize: isMobile ? 140 : 130,
+      });
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const renderIcons = (items: typeof techStack) =>
     items.map((tech) => (
@@ -83,13 +99,13 @@ export function TechStackSection() {
           <OrbitingTech
             items={renderIcons(techStack)}
             shape="circle"
-            baseWidth={window.innerWidth < 1024 ? 900 : 1600}
-            radius={window.innerWidth < 1024 ? 380 : 650}
+            baseWidth={screenSize.baseWidth}
+            radius={screenSize.radius}
             duration={60}
             direction="normal"
             responsive
             className="absolute"
-            itemSize={window.innerWidth < 1024 ? 140 : 130}
+            itemSize={screenSize.itemSize}
             showPath={true}
             pathColor="var(--border)"
             pathWidth={2}

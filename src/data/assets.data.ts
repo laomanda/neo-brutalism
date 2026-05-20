@@ -29,6 +29,8 @@ export const IMAGE_ASSETS = {
   profile: {
     src: profileImage,
     status: "ready",
+    width: 500,
+    height: 570,
     alt: {
       id: "Foto profil Jakkob Panjaitan",
       en: "Profile photo of Jakkob Panjaitan",
@@ -37,6 +39,8 @@ export const IMAGE_ASSETS = {
   about: {
     src: aboutImage,
     status: "ready",
+    width: 1200,
+    height: 800,
     alt: {
       id: "Foto Jakkob Panjaitan di ruang kerja",
       en: "Jakkob Panjaitan workspace portrait",
@@ -45,6 +49,8 @@ export const IMAGE_ASSETS = {
   workspace: {
     src: workspaceImage,
     status: "ready",
+    width: 500,
+    height: 750,
     alt: {
       id: "Workspace developer untuk portfolio Jakkob Panjaitan",
       en: "Developer workspace for Jakkob Panjaitan portfolio",
