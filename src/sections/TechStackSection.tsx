@@ -6,21 +6,23 @@ import OrbitingTech from "../components/ui/OrbitingTech";
 import { homepageCopy } from "../data/homepageCopy.data";
 import { techStack } from "../data/techStack.data";
 import { useLanguage } from "../hooks/useLanguage";
+import { useIsMobile } from "../hooks/useIsMobile";
 import { getText } from "../utils/getText";
 
 const stackCopy = homepageCopy.techStack;
 
 export function TechStackSection() {
   const { language } = useLanguage();
+  const isMobile = useIsMobile();
   const [screenSize, setScreenSize] = useState({ baseWidth: 1600, radius: 650, itemSize: 130 });
 
   useEffect(() => {
     const handleResize = () => {
-      const isMobile = window.innerWidth < 1024;
+      const isMobileWidth = window.innerWidth < 1024;
       setScreenSize({
-        baseWidth: isMobile ? 900 : 1600,
-        radius: isMobile ? 380 : 650,
-        itemSize: isMobile ? 140 : 130,
+        baseWidth: isMobileWidth ? 900 : 1600,
+        radius: isMobileWidth ? 380 : 650,
+        itemSize: isMobileWidth ? 140 : 130,
       });
     };
     handleResize();
@@ -64,8 +66,8 @@ export function TechStackSection() {
       <Container>
         <div className="relative z-10 flex flex-col items-center text-center">
           <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={isMobile ? false : { opacity: 0, y: -10 }}
+            whileInView={isMobile ? undefined : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="flex items-center gap-2 rounded-lg border-2 border-[var(--border)] bg-[var(--background)] px-3 py-1 text-[10px] font-bold uppercase tracking-widest shadow-[3px_3px_0_var(--border)]"
           >
@@ -74,8 +76,8 @@ export function TechStackSection() {
           </motion.div>
           
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={isMobile ? false : { opacity: 0, y: 20 }}
+            whileInView={isMobile ? undefined : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
             className="mt-8 font-heading text-[clamp(2.5rem,8vw,5.5rem)] font-black uppercase leading-[1.1] tracking-tight text-[var(--foreground)] lg:max-w-5xl"
@@ -84,8 +86,8 @@ export function TechStackSection() {
           </motion.h2>
           
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={isMobile ? false : { opacity: 0, y: 20 }}
+            whileInView={isMobile ? undefined : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
             className="mx-auto mt-6 max-w-2xl text-base font-medium leading-relaxed text-[var(--foreground)]/70 lg:text-xl"

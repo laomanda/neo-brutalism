@@ -14,6 +14,7 @@ import { SITE_CONFIG } from "../constants/site";
 import { homepageCopy } from "../data/homepageCopy.data";
 import { socialLinks } from "../data/socialLinks.data";
 import { useLanguage } from "../hooks/useLanguage";
+import { useIsMobile } from "../hooks/useIsMobile";
 import { getText } from "../utils/getText";
 import { cn } from "../utils/cn";
 
@@ -42,6 +43,7 @@ function LiveClock() {
 
 export function ContactSection() {
   const { language } = useLanguage();
+  const isMobile = useIsMobile();
 
   return (
     <section id="contact" className="section-padding scroll-mt-28">
@@ -64,7 +66,7 @@ export function ContactSection() {
                 <MessageCircle size={18} strokeWidth={3} aria-hidden="true" />
                 {getText(contactCopy.whatsappCta, language)}
               </a>
-              <a className={cn(buttonVariants("accent", "md"), "whitespace-nowrap")} href={`https://mail.google.com/mail/?view=cm&fs=1&to=${SITE_CONFIG.email}`} target="_blank" rel="noopener noreferrer">
+              <a className={cn(buttonVariants("accent", "md"), "whitespace-nowrap")} href={`mailto:${SITE_CONFIG.email}`} target="_blank" rel="noopener noreferrer">
                 <Mail size={18} strokeWidth={3} aria-hidden="true" />
                 {getText(contactCopy.emailCta, language)}
               </a>
@@ -132,8 +134,8 @@ export function ContactSection() {
                 {socialLinks.map((link, index) => (
                   <motion.div
                     key={link.label}
-                    initial={{ opacity: 0, y: 16 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    initial={isMobile ? false : { opacity: 0, y: 16 }}
+                    whileInView={isMobile ? undefined : { opacity: 1, y: 0 }}
                     viewport={{ once: true, amount: 0.25 }}
                     transition={{ duration: 0.45, delay: index * 0.04, ease: "easeOut" }}
                   >

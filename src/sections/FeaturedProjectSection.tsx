@@ -9,6 +9,7 @@ import { homepageCopy } from "../data/homepageCopy.data";
 import { projects } from "../data/projects.data";
 import { PROJECT_SCREENSHOTS } from "../data/assets.data";
 import { useLanguage } from "../hooks/useLanguage";
+import { useIsMobile } from "../hooks/useIsMobile";
 import { getText } from "../utils/getText";
 
 const featuredCopy = homepageCopy.featured;
@@ -22,6 +23,7 @@ const techStack = [
 
 export function FeaturedProjectSection() {
   const { language } = useLanguage();
+  const isMobile = useIsMobile();
   const project = projects.find((item) => item.slug === "dpf-wakaf") ?? projects[0];
 
   const sectionRef = useRef<HTMLElement>(null);
@@ -50,8 +52,8 @@ export function FeaturedProjectSection() {
 
           {/* ── LEFT: Copy ────────────────────────────────── */}
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={isMobile ? false : { opacity: 0, y: 24 }}
+            whileInView={isMobile ? undefined : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
             className="flex flex-col"
@@ -113,9 +115,9 @@ export function FeaturedProjectSection() {
             Solid shadow dikurangi di mobile (translate-3) dan lebih besar di desktop (translate-8).
           */}
           <motion.div
-            style={{ y: yMockup }}
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            style={{ y: isMobile ? 0 : yMockup }}
+            initial={isMobile ? false : { opacity: 0, x: 20 }}
+            whileInView={isMobile ? undefined : { opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-5%" }}
             transition={{ duration: 0.5, delay: 0.1 }}
             className="relative pr-3 pb-3 lg:pr-8 lg:pb-8"

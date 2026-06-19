@@ -38,7 +38,7 @@ export const SITE_CONFIG = {
   whatsapp: "https://wa.me/62895321205351",
   github: "https://github.com/laomanda",
   linkedin: "https://linkedin.com/in/jakkob-panjaitan-9631a7408",
-  instagram: "https://www.instagram.com/jakk_0b/",
+  instagram: "https://www.instagram.com/jkkb_o_m_p/",
   cvPath: "/documents/cv-jakkob.pdf",
   cvReady: true,
   profileImageReady: true,

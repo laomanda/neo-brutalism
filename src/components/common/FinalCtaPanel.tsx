@@ -34,7 +34,7 @@ export function FinalCtaPanel({ language, title, description, children }: FinalC
       <p className="mt-5 max-w-2xl text-base font-bold leading-7 text-[#111111]/80">
         {getText(description, language)}
       </p>
-      <div className="no-scrollbar -mx-2 mt-8 flex flex-nowrap items-center gap-3 overflow-x-auto px-2 pb-6 pt-2 sm:gap-4">
+      <div className="mt-8 flex flex-wrap items-center gap-3 sm:gap-4">
         {children}
       </div>
     </div>

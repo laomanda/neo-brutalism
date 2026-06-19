@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import { cn } from "../../utils/cn";
 import * as variants from "../../utils/motion";
 import { ANIMATION } from "../../constants/animation";
+import { useIsMobile } from "../../hooks/useIsMobile";
 
 type AnimatedSectionProps = {
   children: ReactNode;
@@ -22,6 +23,7 @@ export function AnimatedSection({
   once = ANIMATION.viewport.once
 }: AnimatedSectionProps) {
   const shouldReduceMotion = useReducedMotion();
+  const isMobile = useIsMobile();
   const selectedVariant = shouldReduceMotion ? variants.fadeIn : variants[variant];
 
   // If we only want simple fadeIn on reduce motion, fadeIn is applied.
@@ -42,6 +44,14 @@ export function AnimatedSection({
       }
     }
   };
+
+  if (isMobile) {
+    return (
+      <div className={cn(className)}>
+        {children}
+      </div>
+    );
+  }
 
   return (
     <motion.div
