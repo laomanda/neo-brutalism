@@ -51,16 +51,16 @@ export const timelineItems: TimelineItemData[] = [
   },
   {
     title: {
-      id: "Fresh Graduate Developer",
-      en: "Fresh Graduate Developer",
+      id: "Staff of Information Technology (IT)",
+      en: "Staff of Information Technology (IT)",
     },
     period: {
-      id: "Now",
+      id: "Sekarang",
       en: "Now",
     },
     description: {
-      id: "Fokus mencari peluang sebagai Frontend Developer dengan kemampuan fullstack untuk membangun sistem web modern dan terstruktur.",
-      en: "Focused on frontend developer opportunities with fullstack capability to build modern and structured web systems.",
+      id: "Bergabung dengan YWDP/DPF Jakarta untuk mengembangkan dan memelihara sistem, website, aplikasi, CRM, dan dashboard data, sekaligus mendukung keamanan informasi, operasional IT, serta inisiatif digital fundraising.",
+      en: "Joining YWDP/DPF Jakarta to develop and maintain systems, websites, applications, CRM, and data dashboards while supporting information security, IT operations, and digital fundraising initiatives.",
     },
   },
 ];
