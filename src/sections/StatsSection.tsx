@@ -31,17 +31,28 @@ export function StatsSection() {
         const userRes = await fetch(`https://api.github.com/users/${username}`);
         const userData = await userRes.json();
         
-        // Fetch contribution data (using a public proxy service)
-        const contribRes = await fetch(`https://github-contributions-api.deno.dev/${username}.json`);
+        // Fetch contribution data (using a public proxy service with CORS support)
+        const contribRes = await fetch(`https://github-contributions-api.jogruber.de/v4/${username}`);
         const contribData = await contribRes.json();
         
         const createdDate = new Date(userData.created_at);
         const now = new Date();
         const diffYears = now.getFullYear() - createdDate.getFullYear();
         
+        let contributionsCount = 0;
+        if (contribData && Array.isArray(contribData.contributions)) {
+          const oneYearAgo = new Date();
+          oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
+          const dateStr = oneYearAgo.toISOString().split("T")[0];
+          
+          contributionsCount = contribData.contributions
+            .filter((c: any) => c && c.date && c.date >= dateStr)
+            .reduce((sum: number, c: any) => sum + (c.count || 0), 0);
+        }
+        
         setGithubData({
           repos: userData.public_repos || 0,
-          contributions: contribData.totalContributions || 0,
+          contributions: contributionsCount,
           years: Math.max(diffYears, 1),
           loading: false
         });
@@ -113,7 +124,6 @@ export function StatsSection() {
         <AnimatedSection>
           <div className="mb-16 max-w-2xl lg:mb-24">
             <SectionHeader
-              eyebrow={getText(statsCopy.eyebrow, language)}
               title={getText(statsCopy.title, language)}
               description={getText(statsCopy.description, language)}
             />

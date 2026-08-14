@@ -19,15 +19,6 @@ export type TechFilterKey = "all" | TechCategory;
 
 export const homepageCopy = {
   hero: {
-    eyebrow: { id: "Web Developer", en: "Web Developer" },
-    availability: {
-      id: "Terbuka untuk frontend role & freelance work.",
-      en: "Open for frontend roles & freelance work.",
-    },
-    roleNote: {
-      id: "Frontend Developer first, Fullstack-capable second.",
-      en: "Frontend Developer first, Fullstack-capable second.",
-    },
     title: {
       id: "Developer yang membangun web modern, interaktif, dan terstruktur.",
       en: "Developer building modern, interactive, and structured web experiences.",
@@ -42,11 +33,6 @@ export const homepageCopy = {
     cvPending: { id: "CV akan ditambahkan", en: "CV will be added" },
     photoPlaceholder: { id: "Foto asli akan ditambahkan", en: "Real photo will be added" },
     skillTags: ["React", "TypeScript", "Tailwind CSS", "Laravel", "MySQL"],
-    posterBadges: ["Frontend First", "Laravel Flow", "RPL Graduate"],
-    posterStrip: {
-      id: "Junior Frontend Developer",
-      en: "Junior Frontend Developer",
-    }
   },
   about: {
     eyebrow: { id: "Tentang Saya", en: "About Me" },
@@ -212,7 +198,6 @@ export const homepageCopy = {
     screenshotPlaceholder: { id: "Screenshot akan ditambahkan", en: "Screenshot will be added" },
   },
   timeline: {
-    eyebrow: { id: "Perjalanan", en: "Journey" },
     title: { id: "Perjalanan singkat sebagai developer.", en: "A short journey as a developer." },
     description: {
       id: "Dari latar belakang Rekayasa Perangkat Lunak, pengalaman PKL, sampai membangun project web nyata untuk portfolio dan kebutuhan operasional.",
@@ -220,7 +205,6 @@ export const homepageCopy = {
     },
   },
   products: {
-    eyebrow: { id: "Produk & Jasa", en: "Products & Services" },
     title: {
       id: "Penawaran tambahan untuk kebutuhan digital.",
       en: "Secondary offerings for digital needs.",
@@ -277,7 +261,6 @@ export const homepageCopy = {
     ] satisfies CopyCard[],
   },
   stats: {
-    eyebrow: { id: "Angka Singkat", en: "Quick Stats" },
     title: { id: "Sedikit angka untuk memberi konteks.", en: "A few numbers for context." },
     description: {
       id: "Ringkasan singkat tentang pengalaman, project, dan fokus saya sebagai Frontend Developer dengan kemampuan fullstack.",
@@ -285,7 +268,6 @@ export const homepageCopy = {
     },
   },
   contact: {
-    eyebrow: { id: "Kontak", en: "Contact" },
     title: {
       id: "Punya project web yang perlu dibangun dengan rapi?",
       en: "Have a web project that needs to be built properly?",
@@ -294,7 +276,7 @@ export const homepageCopy = {
       id: "Saya terbuka untuk peluang Junior Frontend Developer, project frontend, company profile, landing page, dan sistem web sederhana hingga menengah.",
       en: "I am open to Junior Frontend Developer opportunities, frontend projects, company profiles, landing pages, and small to medium web systems.",
     },
-    socialTitle: { id: "Channel aktif", en: "Active channels" },
+    socialTitle: { id: "Kontak", en: "Contact" },
     socialDescription: {
       id: "Pilih channel yang paling nyaman untuk diskusi cepat, peluang kerja, atau melihat repository project.",
       en: "Pick the most convenient channel for quick discussions, work opportunities, or project repositories.",

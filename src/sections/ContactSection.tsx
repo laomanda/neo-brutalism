@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Icon } from "@iconify/react";
 import { Mail, MessageCircle, MapPin, Clock, Briefcase } from "lucide-react";
 import { motion } from "motion/react";
-import { AvailabilityBadge } from "../components/common/AvailabilityBadge";
 import { Container } from "../components/common/Container";
 import { CvDownloadButton } from "../components/common/CvDownloadButton";
 import { FinalCtaPanel } from "../components/common/FinalCtaPanel";
@@ -48,11 +47,6 @@ export function ContactSection() {
   return (
     <section id="contact" className="section-padding scroll-mt-28">
       <Container>
-        <AnimatedSection>
-          <div className="mb-6">
-            <AvailabilityBadge />
-          </div>
-        </AnimatedSection>
 
         <div className="grid gap-7 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
           <AnimatedSection>
@@ -120,9 +114,6 @@ export function ContactSection() {
           <AnimatedSection delay={0.08}>
             <Card accent="orange" className="bg-[var(--card)]">
               <div className="mb-5">
-                <span className="inline-flex rounded-full border-2 border-[var(--border)] bg-[var(--orange)] px-3 py-1 text-xs font-extrabold text-[#111111] shadow-[3px_3px_0_var(--border)]">
-                  {getText(contactCopy.eyebrow, language)}
-                </span>
                 <h3 className="mt-4 font-heading text-2xl font-extrabold">
                   {getText(contactCopy.socialTitle, language)}
                 </h3>

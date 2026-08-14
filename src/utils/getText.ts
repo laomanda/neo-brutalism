@@ -1,5 +1,7 @@
 import type { BilingualText, Language } from "../types/common.types";
 
-export function getText(text: BilingualText, language: Language) {
-  return text[language] ?? text.id;
+export function getText(text: BilingualText | undefined | null, language: Language): string {
+  if (!text) return "";
+  return text[language] ?? text.id ?? "";
 }
+

@@ -11,7 +11,6 @@ import { Container } from "../common/Container";
 
 const footerSocialLabels = new Set(["GitHub", "LinkedIn", "Instagram", "Gmail"]);
 const footerQuickLinkHrefs = new Set(["/", "/#projects", "/#products", "/#contact"]);
-const footerTech = ["React", "TypeScript", "Laravel", "Tailwind"];
 
 const quickLinkConfig: Record<string, { icon: string; hoverClass: string; hoverText: string }> = {
   "/": {
@@ -87,17 +86,6 @@ export function Footer() {
             <p className="mt-4 max-w-xl text-sm font-bold leading-6 text-[var(--foreground)]/80 sm:text-base">
               {copyDesc}
             </p>
-
-            <div className="mt-6 flex flex-wrap gap-2">
-              {footerTech.map((item) => (
-                <span
-                  key={item}
-                  className="rounded-full border-2 border-[var(--border)] bg-[var(--background)] px-3 py-1 text-xs font-extrabold text-[var(--foreground)]/85"
-                >
-                  {item}
-                </span>
-              ))}
-            </div>
 
             <p className="mt-5 text-sm font-extrabold text-[var(--foreground)]/65">{copyAvail}</p>
           </div>

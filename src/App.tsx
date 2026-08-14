@@ -7,14 +7,10 @@ import { HomePage } from "./pages/HomePage";
 const ProjectDetailPage = lazy(() => import("./pages/ProjectDetailPage").then(module => ({ default: module.ProjectDetailPage })));
 const ProductDetailPage = lazy(() => import("./pages/ProductDetailPage").then(module => ({ default: module.ProductDetailPage })));
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage").then(module => ({ default: module.NotFoundPage })));
-const CustomCursor = lazy(() => import("./components/ui/CustomCursor").then(module => ({ default: module.CustomCursor })));
 
 function App() {
   return (
     <BrowserRouter>
-      <Suspense fallback={null}>
-        <CustomCursor />
-      </Suspense>
       <Routes>
         <Route element={<MainLayout />}>
           <Route path={ROUTES.home} element={<HomePage />} />

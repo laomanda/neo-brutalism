@@ -145,7 +145,6 @@ export function ExperienceTimelineSection() {
       <Container>
         <div className="mb-16 lg:mb-24">
           <SectionHeader
-            eyebrow={getText(timelineCopy.eyebrow, language)}
             title={getText(timelineCopy.title, language)}
             description={getText(timelineCopy.description, language)}
           />

@@ -47,7 +47,6 @@ export function ProductsServicesSection() {
         <AnimatedSection>
           <div className="mb-16 max-w-2xl lg:mb-24">
             <SectionHeader
-              eyebrow={getText(productsCopy.eyebrow, language)}
               title={getText(productsCopy.title, language)}
               description={getText(productsCopy.description, language)}
             />
